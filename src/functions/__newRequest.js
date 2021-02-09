@@ -1,0 +1,46 @@
+import __spamRequest from './__spamRequest';
+import _openCon from './_openCon';
+import __rdCreateDeal from './__rdCreateDeal';
+
+const portBot = process.env.PORTBOT;
+const app = require('express')();
+
+
+const http = require('http').Server(app);
+const io = require('socket.io')(http, {
+  path: '/' + portBot + '/socket.io', cors: {
+      origin: '*',
+  }
+});
+
+let config = '';
+
+async function __newRequest([data]) {
+  return new Promise(async (resolve) => {
+      try {
+
+          if (!await __spamRequest(data.ip)) {
+              const conn = await _openCon()
+
+              var name = data.name
+              var phone = data.phone.replace(/\D/g, '')
+              var location = data.location
+              var ip = data.ip
+              conn.promise().query("INSERT INTO tbRequests SET name='" + name + "', phone='" + phone + "', dataIn=NOW(), location='" + location + "', idBot='" + idBot + "', ip='" + ip + "'").then(async ([result]) => {
+                  var id = result.insertId
+                  data.id = id
+                  io.of('/' + portBot).emit('newrequest', data)
+                  if (config.rdstation.status) {
+                      await __rdCreateDeal({ name: name, phone: phone })
+                  }
+                  resolve(true)
+              })
+          } else {
+              resolve(false)
+          }
+      } catch (error) {
+          resolve(false)
+      }
+  })
+}
+export default __newRequest;

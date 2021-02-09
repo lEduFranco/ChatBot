@@ -1,0 +1,40 @@
+{
+  "name": "apps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
+    "aws-sdk": "^2.799.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "ffmpeg": "0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "lodash": "^4.17.20",
+    "mime": "^2.4.6",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.2.5",
+    "pm2": "^4.5.1",
+    "puppeteer": "^5.5.0",
+    "qrcode-terminal": "^0.12.0",
+    "request": "^2.88.2",
+    "socket.io": "^3.0.3",
+    "uuid": "^8.3.1",
+    "whatsapp-web.js": "^1.11.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1"
+  }
+}
