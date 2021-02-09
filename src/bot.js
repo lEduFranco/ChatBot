@@ -1,4 +1,3 @@
-
 const portBot = process.env.PORTBOT
 var whitelist = ['*'];
 
@@ -29,21 +28,13 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json({ limit: '100mb' }));
 //let names = require('./names.json');
 
-const AWS = require('aws-sdk');
-const spacesEndpoint = new AWS.Endpoint('');
-
-
-let initiated = []
-let config = '';
-
-
 var authenticated = false;
 
 var qrImg = ''
-var started = false
+
 
 let attendants = []
-let cooldowns = [];
+
 
 
 let client = [];
@@ -51,9 +42,8 @@ let client = [];
 let countSendMsg = []
 
 var qrcode = ''
-var urlSite = ''
 
-var urlAudio = urlSite + '/media/sended/'
+
 
 
 

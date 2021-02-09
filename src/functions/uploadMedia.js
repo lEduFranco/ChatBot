@@ -1,5 +1,5 @@
 import fs from 'fs';
-
+var urlSite = '';
 
 async function uploadMedia(file, type, ext) {
   try {

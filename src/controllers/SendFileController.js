@@ -3,6 +3,7 @@ import _sendFile from '../functions/_sendFile';
 
 
 var authenticated = false;
+var urlAudio = urlSite + '/media/sended/'
 
 
 export default class SendFileController {

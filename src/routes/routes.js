@@ -25,6 +25,8 @@ import GetUserPicController from '../controllers/GetUserPicController';
 import NewChatController from '../controllers/NewChatController';
 import NewRequestController from '../controllers/NewRequestController';
 import SendController from '../controllers/SendController';
+import RemoveController from '../controllers/RemoveController';
+import PowerOnController from '../controllers/PowerOnController';
 
 const initiatorController = new InitiatorController();
 const restartController = new RestartController();
@@ -48,6 +50,8 @@ const getUserPicController = new GetUserPicController();
 const newChatController = new NewChatController();
 const newRequestController = new NewRequestController();
 const sendController = new SendController();
+const removeController = new RemoveController();
+const powerOnController = new PowerOnController();
 
 botRouter.post('/' + portBot + '/inicializador', initiatorController.create);
 botRouter.post('/' + portBot + '/restart', restartController.create);
@@ -71,4 +75,7 @@ botRouter.post('/' + portBot + '/getuserpic', getUserPicController.create);
 botRouter.post('/' + portBot + '/newchat', newChatController.create);
 botRouter.post('/' + portBot + '/newrequest', newRequestController.create);
 botRouter.post('/' + portBot + '/send', sendController.create);
+botRouter.post('/3000/remove', removeController.create);
+botRouter.post('/3000/poweron', powerOnController.create);
+
 

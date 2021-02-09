@@ -1,3 +1,4 @@
+import AWS from 'aws-sdk';
 const spacesEndpoint = new AWS.Endpoint('');
 
 const s3 = new AWS.S3({

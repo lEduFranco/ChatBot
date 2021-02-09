@@ -2,6 +2,7 @@ import _checkApiKey from '../functions/_checkApiKey';
 import _sendAudio from '../functions/_sendAudio';
 
 var authenticated = false;
+var urlAudio = urlSite + '/media/sended/'
 
 export default class SendAudioController {
   async create (req, res) {
