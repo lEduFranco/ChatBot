@@ -13,7 +13,7 @@ const io = require('socket.io')(http, {
 });
 
 
-export default class ButAtualizaentradaController {
+export default class AtualizaentradaController {
  async create(req, res) {
     if (authenticated) {
         var content = req.body;

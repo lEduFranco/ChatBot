@@ -2,7 +2,7 @@ import _checkApiKey from '../functions/_checkApiKey';
 import _initBot from '../functions/_initBot';
 import changeState from '../functions/changeState';
 
-export default class ButInitiatorController {
+export default class InitiatorController {
   async create (req, res) {
   try {
       var content = req.body;

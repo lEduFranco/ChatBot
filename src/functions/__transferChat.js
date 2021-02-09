@@ -8,6 +8,7 @@ let client = [];
 let initiated = [];
 let attendants = [];
 
+const http = require('http').Server(app);
 const io = require('socket.io')(http, {
   path: '/' + portBot + '/socket.io', cors: {
       origin: '*',

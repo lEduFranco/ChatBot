@@ -1,23 +1,74 @@
 import  Router from  'express';
 
-import _checkApiKey from '../../bot';
-
 const botRouter = Router();
 const portBot = process.env.PORTBOT
 
-import ButInitiatorController from '../controllers/ButInitiatorController';
-import ButRestartCntroller from '../controllers/ButRestartCntroller';
-import ButRefreshbotController from '../controllers/ButRefreshbotController';
-import ButAtualizaentradaController from '../controllers/ButAtualizaentradaController';
+import InitiatorController from '../controllers/InitiatorController';
+import RestartController from '../controllers/RestartController';
+import RefreshbotController from '../controllers/RefreshbotController';
+import AtualizaentradaController from '../controllers/AtualizaentradaController';
+import FinalizaticketController from '../controllers/FinalizaticketController';
+import SendAudioController from '../controllers/SendAudioController';
+import SendFileController from '../controllers/SendFileController';
+import NewTicketController from '../controllers/NewTicketController';
+import UserChatController from '../controllers/UserChatController';
+import LogoutController from '../controllers/LogoutController';
+import ResetBotController from '../controllers/ResetBotController';
+import NewListController from '../controllers/NewListController';
+import NewStatusController from '../controllers/NewStatusController';
+import LoggedController from '../controllers/LoggedController';
+import TransferChatController from '../controllers/TransferChatController';
+import GetUseridController from '../controllers/GetUseridController';
+import BlockUserController from '../controllers/BlockUserController';
+import UnblockUserController from '../controllers/UnblockUserController';
+import GetUserPicController from '../controllers/GetUserPicController';
+import NewChatController from '../controllers/NewChatController';
+import NewRequestController from '../controllers/NewRequestController';
+import SendController from '../controllers/SendController';
 
-const butInitiatorController = new ButInitiatorController();
-const butRestartCntroller = new ButRestartCntroller();
-const butRefreshbotController = new ButRefreshbotController();
-const butAtualizaentradaController = new ButAtualizaentradaController();
+const initiatorController = new InitiatorController();
+const restartController = new RestartController();
+const refreshbotController = new RefreshbotController();
+const atualizaentradaController = new AtualizaentradaController();
+const finalizaticketController = new FinalizaticketController();
+const sendAudioController = new SendAudioController();
+const sendFileController = new SendFileController();
+const newTicketController = new NewTicketController();
+const userChatController = new UserChatController();
+const logoutController = new LogoutController();
+const resetBotController = new ResetBotController();
+const newListController = new NewListController();
+const newStatusController = new NewStatusController();
+const loggedController = new LoggedController();
+const transferChatController = new TransferChatController();
+const getUseridController = new GetUseridController();
+const blockUserController = new BlockUserController();
+const unblockUserController = new UnblockUserController();
+const getUserPicController = new GetUserPicController();
+const newChatController = new NewChatController();
+const newRequestController = new NewRequestController();
+const sendController = new SendController();
 
-botRouter.post('/' + portBot + '/inicializador', butInitiatorController.create);
-botRouter.post('/' + portBot + '/restart', butRestartCntroller.create);
-botRouter.post('/' + portBot + '/refreshbot', butRefreshbotController.create);
-botRouter.post('/' + portBot + '/atualizaentrada', butAtualizaentradaController.create);
-
+botRouter.post('/' + portBot + '/inicializador', initiatorController.create);
+botRouter.post('/' + portBot + '/restart', restartController.create);
+botRouter.post('/' + portBot + '/refreshbot', refreshbotController.create);
+botRouter.post('/' + portBot + '/atualizaentrada', atualizaentradaController.create);
+botRouter.post('/' + portBot + '/finalizaticket', finalizaticketController.create);
+botRouter.post('/' + portBot + '/sendaudio', sendAudioController.create);
+botRouter.post('/' + portBot + '/sendfile', sendFileController.create);
+botRouter.post('/' + portBot + '/newticket', newTicketController.create);
+botRouter.post('/' + portBot + '/userchat', userChatController.create);
+botRouter.post('/' + portBot + '/logout', logoutController.create);
+botRouter.post('/' + portBot + '/resetbot', resetBotController.create);
+botRouter.post('/' + portBot + '/newlist', newListController.create);
+botRouter.post('/' + portBot + '/newstatus', newStatusController.create);
+botRouter.post('/' + portBot + '/logged', loggedController.create);
+botRouter.post('/' + portBot + '/transferchat', transferChatController.create);
+botRouter.post('/' + portBot + '/getuserid', getUseridController.create);
+botRouter.post('/' + portBot + '/blockuser', blockUserController.create);
+botRouter.post('/' + portBot + '/unblockuser', unblockUserController.create);
+botRouter.post('/' + portBot + '/getuserpic', getUserPicController.create);
+botRouter.post('/' + portBot + '/newchat', newChatController.create);
+botRouter.post('/' + portBot + '/newrequest', newRequestController.create);
+botRouter.post('/' + portBot + '/send', sendController.create);
 

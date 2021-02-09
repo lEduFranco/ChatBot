@@ -2,7 +2,7 @@ import _checkApiKey from '../functions/_checkApiKey';
 import _initBot from '../functions/_initBot';
 import checkToken from '../functions/checkToken';
 
-export default class ButRefreshbotController {
+export default class RefreshbotController {
   async create (req, res) {
     try {
         if (started && authenticated) {

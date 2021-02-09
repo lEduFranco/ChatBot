@@ -1,7 +1,7 @@
 import _checkApiKey from  '../functions/_checkApiKey';
 import _pmRestart from  '../functions/_pmRestart';
 
-export default class ButRestartController {
+export default class RestartController {
   async create (req, res) {
   try {
     var content = req.body;
