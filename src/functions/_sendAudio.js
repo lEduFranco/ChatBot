@@ -3,6 +3,7 @@ const path = require('path');
 
 const portBot = process.env.PORTBOT
 const { v4: uuidv4 } = require('uuid');
+const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http, {
   path: '/' + portBot + '/socket.io', cors: {

@@ -1,6 +1,7 @@
 const _checkApiKey = require ('../functions/_checkApiKey');
 const _sendAudio = require ('../functions/_sendAudio');
 
+var urlSite = '';
 var authenticated = false;
 var urlAudio = urlSite + '/media/sended/'
 

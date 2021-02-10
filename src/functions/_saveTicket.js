@@ -1,6 +1,6 @@
 const _openCon = require('./_openCon');
 const _loadChat = require('./_loadChat');
-const __getAttendant = require('./__getAttendants');
+const __getAttendant = require('./__getAttendant');
 
 const portBot = process.env.PORTBOT
 
@@ -8,6 +8,7 @@ var idBot = 0;
 let initiated = [];
 let attendants = []
 
+const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http, {
   path: '/' + portBot + '/socket.io', cors: {

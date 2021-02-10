@@ -1,11 +1,11 @@
 const routes = require('./routes/routes');
+const app = require('express')();
+
 
 
 const portBot = process.env.PORTBOT
 var whitelist = ['*'];
 
-const app = require('express')();
-app.use(routes);
 
 var cors = require('cors');
 app.use(cors({
@@ -213,6 +213,10 @@ io.of('/' + portBot).on('connection', async socket => {
         }
     })
 });
+
+
+app.use(routes);
+// app.listen(3333);
 
 http.listen(portBot, function () {
     var addr = http.address();

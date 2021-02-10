@@ -1,3 +1,4 @@
+
 const _openCon = require('./_openCon');
 const startBotChat = require('./startBotChat');
 
@@ -15,6 +16,7 @@ let schedules = []
 let answers = []
 
 let ms
+
 
 async function _initBot() {
   console.log(new Date(Date.now()).toLocaleTimeString(), ' - _initBot')

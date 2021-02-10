@@ -3,6 +3,7 @@ const _sendFile = require ('../functions/_sendFile');
 
 
 var authenticated = false;
+var urlSite = '';
 var urlAudio = urlSite + '/media/sended/'
 
 

@@ -8,6 +8,7 @@ var idBot = 0;
 let attendants = []
 let initiated = []
 
+const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http, {
   path: '/' + portBot + '/socket.io', cors: {
