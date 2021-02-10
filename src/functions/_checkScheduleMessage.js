@@ -16,4 +16,4 @@ function _checkScheduleMessage() {
       console.log(error)
   }
 }
-export default _checkScheduleMessage;
+module.exports = _checkScheduleMessage;

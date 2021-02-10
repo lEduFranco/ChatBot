@@ -1,8 +1,10 @@
-import _checkApiKey from '../functions/_checkApiKey';
-import _initBot from '../functions/_initBot';
-import checkToken from '../functions/checkToken';
+const _initBot = require ('../functions/_initBot');
+const checkToken = require ('../functions/checkToken');
 
-export default class RefreshbotController {
+var authenticated = false;
+var authenticated = false;
+
+module.exports = {
   async create (req, res) {
     try {
         if (started && authenticated) {

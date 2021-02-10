@@ -30,4 +30,4 @@ function checkPhone(number) {
   // return d.substr(0, 4) + '' + d.substr(-8) + '@c.us'
   return d + '@c.us'
 }
-export default checkPhone;
+module.exports = checkPhone;

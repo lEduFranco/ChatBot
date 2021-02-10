@@ -1,4 +1,4 @@
-import getGender from './getGender';
+const getGender = require('./getGender');
 
 let client = [];
 let countSendMsg = [];
@@ -37,4 +37,4 @@ async function _sendMsg(number, name, body, image, idImg, idMsg) {
       console.log(error)
   }
 }
-export default _sendMsg;
+module.exports = _sendMsg;

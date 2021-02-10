@@ -1,4 +1,4 @@
-import _openCon from './_openCon';
+const _openCon = require('./_openCon');
 
 async function __spamRequest(ip) {
   return new Promise(async (resolve) => {
@@ -17,4 +17,4 @@ async function __spamRequest(ip) {
       }
   })
 }
-export default __spamRequest;
+module.exports = __spamRequest;

@@ -5,4 +5,4 @@ function _checkNull(data) {
       return false
   }
 }
-export default _checkNull;
+module.exports = _checkNull;

@@ -1,7 +1,7 @@
-import _openCon from './_openCon';
-import _sendImg from './_sendImg';
-import _timerOcioso from './_timerOcioso';
-import _saveMessages from './_saveMessages';
+const _openCon = require('./_openCon');
+const _sendImg = require('./_sendImg');
+const _timerOcioso = require('./_timerOcioso');
+const _saveMessages = require('./_saveMessages');
 
 var idBot = 0;
 let config = '';
@@ -52,4 +52,4 @@ async function closeTicket(data) {
       console.log(error)
   }
 }
-export default closeTicket;
+module.exports = closeTicket;

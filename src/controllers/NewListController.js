@@ -1,8 +1,7 @@
-import _checkApiKey from '../functions/checkToken';
-import __newList from '../functions/__newList';
+const _checkApiKey = require ('../functions/checkToken');
+const __newList = require ('../functions/__newList');
 
-
-export default class NewListController {
+module.exports = {
   async create (req, res) {
     try {
         var content = req.body;

@@ -1,4 +1,4 @@
-import _openCon from './_openCon';
+const _openCon = require ('./_openCon');
 
 async function __getUserData(data) {
   try {
@@ -12,4 +12,4 @@ async function __getUserData(data) {
       console.log(error)
   }
 }
-export default __getUserData;
+module.exports = __getUserData;

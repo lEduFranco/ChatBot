@@ -1,6 +1,6 @@
-import __spamRequest from './__spamRequest';
-import _openCon from './_openCon';
-import __rdCreateDeal from './__rdCreateDeal';
+const __spamRequest = require('./__spamRequest');
+const _openCon = require('./_openCon');
+const __rdCreateDeal = require('./__rdCreateDeal');
 
 const portBot = process.env.PORTBOT;
 const app = require('express')();
@@ -43,4 +43,4 @@ async function __newRequest([data]) {
       }
   })
 }
-export default __newRequest;
+module.exports = __newRequest;

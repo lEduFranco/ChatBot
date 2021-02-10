@@ -1,4 +1,4 @@
-import _notifyAdmin from './_notifyAdmin';
+const _notifyAdmin = require('./_notifyAdmin');
 
 function _pmRestartVPS() {
   console.log(new Date(Date.now()).toLocaleTimeString(), ' - reiniciando VPS')

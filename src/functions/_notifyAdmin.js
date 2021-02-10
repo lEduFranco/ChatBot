@@ -11,4 +11,4 @@ async function _notifyAdmin(message) {
       console.log(error)
   }
 }
-export default _notifyAdmin;
+module.exports = _notifyAdmin;

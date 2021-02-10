@@ -9,4 +9,4 @@ const io = require('socket.io')(http, {
 function _sendQR(qr) {
   io.of('/' + portBot).emit('qr', qr)
 }
-export default _sendQR;
+module.exports = _sendQR;

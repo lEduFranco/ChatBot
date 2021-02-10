@@ -1,6 +1,6 @@
-import _checkApiKey from '../functions/_checkApiKey';
-import _sendImg from '../functions/_sendImg';
-import _saveMessages from '../functions/_saveMessages';
+const _checkApiKey =  require('../functions/_checkApiKey');
+const _sendImg =  require('../functions/_sendImg');
+const _saveMessages =  require('../functions/_saveMessages');
 
 let initiated = [];
 let cooldowns = [];
@@ -8,7 +8,7 @@ let config = '';
 var authenticated = false;
 var cooldownsRun = false;
 
-export default class FinalizaticketController {
+module.exports = {
   async create (req, res) {
     try {
         var content = req.body;

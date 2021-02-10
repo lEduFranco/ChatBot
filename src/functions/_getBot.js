@@ -1,9 +1,9 @@
-import _openCon from './_openCon';
-import _initBot from './_initBot';
+const _openCon = require('./_openCon');
+const _initBot = require('./_initBot');
 
 const portBot = process.env.PORTBOT
-import fs from 'fs';
-import BD_CONNECT_BOT from  '../../connection.json';
+const fs = require('fs');
+const BD_CONNECT_BOT = require( '../../connection.json');
 
 var whitelist = ['*'];
 let dconn = '';
@@ -48,4 +48,4 @@ async function _getBot() {
       console.log(error)
   }
 }
-export default _getBot;
+module.exports = _getBot;

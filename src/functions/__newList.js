@@ -1,7 +1,7 @@
-import _openCon from './_openCon';
-import _getLeads from './_getLeads';
-import __checkAllowMessage from './__checkAllowMessage';
-import _timerLists from './_timerLists';
+const _openCon = require('./_openCon');
+const _getLeads = require('./_getLeads');
+const __checkAllowMessage = require('./__checkAllowMessage');
+const _timerLists = require('./_timerLists');
 
 var authenticated = false;
 var sendListTimer = false;
@@ -55,4 +55,4 @@ async function __newList(data) {
       reject(error)
   }
 }
-export default __newList;
+module.exports = __newList;

@@ -1,4 +1,4 @@
-import _getChatById from './_getChatById';
+const _getChatById = require('./_getChatById');
 
 async function _loadChat(idChat) {
   return new Promise(async (resolve) => {
@@ -20,4 +20,4 @@ async function _loadChat(idChat) {
       }
   })
 }
-export default _loadChat;
+module.exports = _loadChat;

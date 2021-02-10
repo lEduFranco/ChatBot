@@ -1,4 +1,4 @@
-import _openCon from './_openCon';
+const _openCon = require ('./_openCon');
 
 var idBot = 0;
 
@@ -18,4 +18,4 @@ async function __getAttendant(id) {
       console.log(error)
   }
 }
-export default __getAttendant;
+module.exports = __getAttendant;

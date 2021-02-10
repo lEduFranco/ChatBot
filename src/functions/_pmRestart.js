@@ -1,4 +1,4 @@
-import _notifyAdmin from './_notifyAdmin';
+const _notifyAdmin = require('./_notifyAdmin');
 
 function _pmRestart() {
   console.log(new Date(Date.now()).toLocaleTimeString(), ' - reiniciando instancia')
@@ -13,4 +13,4 @@ function _pmRestart() {
   });
   */
 }
-export default _pmRestart;
+module.exports = _pmRestart;

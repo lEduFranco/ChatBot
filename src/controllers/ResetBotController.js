@@ -1,14 +1,14 @@
-import _checkApiKey from '../functions/checkToken';
-import _sendStatus from '../functions/_sendStatus';
-import _saveStatistics from '../functions/_saveStatistics';
-import _saveSession from '../functions/_saveSession';
-import _pmRestart from '../functions/_pmRestart';
+const _checkApiKey = require ('../functions/checkToken');
+const _sendStatus = require ('../functions/_sendStatus');
+const _saveStatistics = require ('../functions/_saveStatistics');
+const _saveSession = require ('../functions/_saveSession');
+const _pmRestart = require ('../functions/_pmRestart');
 
 var authenticated = false;
 var started = false;
 let client = [];
 
-export default class ResetBotController {
+module.exports = {
   async create (req, res) {
     try {
         var content = req.body;

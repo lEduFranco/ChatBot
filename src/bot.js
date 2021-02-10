@@ -1,9 +1,13 @@
+const routes = require('./routes/routes');
+
+
 const portBot = process.env.PORTBOT
 var whitelist = ['*'];
 
+const app = require('express')();
+app.use(routes);
 
 var cors = require('cors');
-const app = require('express')();
 app.use(cors({
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1 || !origin) {

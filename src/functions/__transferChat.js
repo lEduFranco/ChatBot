@@ -1,6 +1,6 @@
-import _openCon from './_openCon';
-import __saveLog from './__saveLog';
-import _loadChat from './_loadChat';
+const _openCon = require('./_openCon');
+const __saveLog = require('./__saveLog');
+const _loadChat = require('./_loadChat');
 
 const portBot = process.env.PORTBOT
 
@@ -57,4 +57,4 @@ async function __transferChat(data) {
       console.log(error)
   }
 }
-export default __transferChat;
+module.exports = __transferChat;

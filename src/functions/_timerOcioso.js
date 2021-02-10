@@ -1,4 +1,4 @@
-import closeTicket from './closeTicket';
+const closeTicket = require('./closeTicket');
 
 var __timerOcioso = '';
 var cooldownsRun = false;
@@ -31,4 +31,4 @@ function _timerOcioso() {
         }
     }, 5000)
 }
-export default _timerOcioso;
+module.exports = _timerOcioso;

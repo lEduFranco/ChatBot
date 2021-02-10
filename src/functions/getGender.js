@@ -17,4 +17,4 @@ function getGender(name) {
   }*/
 
 }
-export default getGender;
+module.exports = getGender;

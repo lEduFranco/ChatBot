@@ -1,4 +1,4 @@
-import _openCon from './_openCon';
+const _openCon = require('./_openCon');
 
 var idBot = 0;
 
@@ -15,4 +15,4 @@ async function __saveLog(idAtend, idAction, data) {
       }
   })
 }
-export default __saveLog;
+module.exports = __saveLog;

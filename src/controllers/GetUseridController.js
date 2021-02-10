@@ -1,9 +1,9 @@
-import _checkApiKey from '../functions/_checkApiKey';
-import __getUserData from '../functions/__getUserData';
+const _checkApiKey = require ('../functions/_checkApiKey');
+const __getUserData = require ('../functions/__getUserData');
 
 
 
-export default class GetUseridController {
+module.exports = {
   async create (req, res) {
     try {
         var content = req.body;

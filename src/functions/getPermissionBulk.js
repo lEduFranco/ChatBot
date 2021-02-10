@@ -7,4 +7,4 @@ async function getPermissionBulk(data) {
       }
   })
 }
-export default getPermissionBulk;
+module.exports = getPermissionBulk;

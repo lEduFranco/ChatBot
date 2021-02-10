@@ -1,10 +1,10 @@
-import _checkApiKey from '../functions/_checkApiKey';
-import _sendAudio from '../functions/_sendAudio';
+const _checkApiKey = require ('../functions/_checkApiKey');
+const _sendAudio = require ('../functions/_sendAudio');
 
 var authenticated = false;
 var urlAudio = urlSite + '/media/sended/'
 
-export default class SendAudioController {
+module.exports = {
   async create (req, res) {
     try {
         var content = req.body;

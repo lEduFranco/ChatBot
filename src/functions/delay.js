@@ -9,4 +9,4 @@ function delay(t) {
     );
     */
 }
-export default delay;
+module.exports = delay;

@@ -1,5 +1,5 @@
-import checkPhone from './checkPhone';
-import __scheduleMessage from './__scheduleMessage';
+const checkPhone = require('./checkPhone');
+const __scheduleMessage = require('./__scheduleMessage');
 
 var authenticated = false;
 
@@ -29,4 +29,4 @@ async function __sendMessage(data) {
       }
   })
 }
-export default __sendMessage;
+module.exports = __sendMessage;

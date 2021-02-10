@@ -1,6 +1,6 @@
-import fs from 'fs';
+const fs = require('fs');
 const request = require('request').defaults({ encoding: null });
-import path from 'path';
+const path = require('path');
 
 let config = '';
 
@@ -26,4 +26,4 @@ async function _getImagesList(urls) {
       console.log(error)
   }
 }
-export default _getImagesList;
+module.exports = _getImagesList;

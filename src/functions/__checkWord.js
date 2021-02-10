@@ -1,4 +1,4 @@
-import sendBot from './sendBot';
+const sendBot = require ('./sendBot');
 
 async function __checkWord(word) {
   return new Promise(async (resolve) => {
@@ -36,4 +36,4 @@ async function __checkWord(word) {
       }
   })
 }
-export default __checkWord;
+module.exports = __checkWord;

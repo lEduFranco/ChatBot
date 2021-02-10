@@ -1,4 +1,4 @@
-import fs from 'fs';
+const fs = require('fs');
 var urlSite = '';
 
 async function uploadMedia(file, type, ext) {
@@ -34,4 +34,4 @@ async function uploadMedia(file, type, ext) {
       console.log(error)
   }
 }
-export default uploadMedia;
+module.exports = uploadMedia;

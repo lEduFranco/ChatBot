@@ -1,8 +1,8 @@
-import _checkApiKey from '../functions/_checkApiKey';
-import __newchat from '../functions/__newchat';
+const _checkApiKey = require ('../functions/_checkApiKey');
+const __newchat = require ('../functions/__newchat');
 
 
-export default class NewChatController {
+module.exports = {
   async create (req, res) {
     try {
         var content = req.body;

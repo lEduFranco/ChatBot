@@ -1,4 +1,4 @@
-import _openCon from './_openCon';
+const _openCon = require('./_openCon');
 
 var idBot = 0;
 let leads = ''
@@ -17,4 +17,4 @@ async function _getLeads() {
       }
   })
 }
-export default _getLeads;
+module.exports = _getLeads;

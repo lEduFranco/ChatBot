@@ -1,4 +1,4 @@
-import _openCon from './_openCon';
+const _openCon = require('./_openCon');
 
 var idBot = 0;
 
@@ -23,4 +23,4 @@ async function checkToken(token) {
       console.log(error)
   }
 }
-export default checkToken;
+module.exports = checkToken;

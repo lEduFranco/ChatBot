@@ -1,7 +1,7 @@
-import _checkApiKey from '../functions/checkToken';
-import __newStatus from '../functions/__newStatus';
+const _checkApiKey = require ('../functions/checkToken');
+const __newStatus = require ('../functions/__newStatus');
 
-export default class NewStatusController {
+module.exports = {
   async create (req, res) {
     try {
         var content = req.body;

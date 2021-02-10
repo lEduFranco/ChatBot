@@ -1,10 +1,10 @@
-import _openCon from './_openCon';
-import _getContactById from './_getContactById';
-import _checkNull from './_checkNull';
-import getGender from './getGender';
-import _saveLead from './_saveLead';
-import _loadChat from './_loadChat';
-import __getAttendant from './__getAttendant';
+const _openCon = require('./_openCon');
+const _getContactById = require('./_getContactById');
+const _checkNull = require('./_checkNull');
+const getGender = require('./getGender');
+const _saveLead = require('./_saveLead');
+const _loadChat = require('./_loadChat');
+const __getAttendant = require('./__getAttendant');
 
 let client = [];
 let initiated = [];
@@ -75,4 +75,4 @@ async function _loadChats(data) {
       console.log(error)
   }
 }
-export default _loadChats;
+module.exports = _loadChats;

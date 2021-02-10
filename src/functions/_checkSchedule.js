@@ -33,4 +33,4 @@ function _checkSchedule() {
       return 'on'
   }
 }
-export default _checkSchedule;
+module.exports = _checkSchedule;

@@ -51,4 +51,4 @@ async function _restartBot() {
   } finally { }
   */
 }
-export default _restartBot;
+module.exports = _restartBot;

@@ -1,5 +1,5 @@
-import delay from './delay';
-import sendBot from './sendBot';
+const delay = require('./delay');
+const sendBot = require('./sendBot');
 
 let ms
 
@@ -25,4 +25,4 @@ async function _sendUnreads() {
       reject('error')
   }
 }
-export default _sendUnreads;
+module.exports = _sendUnreads;

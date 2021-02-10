@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
 const portBot = process.env.PORTBOT
 const { v4: uuidv4 } = require('uuid');
@@ -56,4 +56,4 @@ async function _sendAudio(data) {
       })
   })
 }
-export default _sendAudio;
+module.exports = _sendAudio;

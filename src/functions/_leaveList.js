@@ -1,6 +1,6 @@
-import _openCon from './_openCon';
-import _checkLead from './_checkLead';
-import _saveLead from './_saveLead';
+const _openCon = require('./_openCon');
+const _checkLead = require('./_checkLead');
+const _saveLead = require('./_saveLead');
 
 var idBot = 0;
 let client = [];
@@ -25,4 +25,4 @@ async function _leaveList(idInt) {
       console.log(error)
   }
 }
-export default _leaveList;
+module.exports = _leaveList;

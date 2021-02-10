@@ -1,4 +1,4 @@
-import _openCon from './_openCon';
+const _openCon = require('./_openCon');
 
 var idBot = 0;
 
@@ -19,4 +19,4 @@ async function _checkLead(idInt) {
       console.log(error)
   }
 }
-export default _checkLead;
+module.exports = _checkLead;

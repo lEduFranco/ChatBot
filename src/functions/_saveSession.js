@@ -1,4 +1,4 @@
-import _openCon from './_openCon';
+const _openCon = require('./_openCon');
 
 var idBot = 0;
 
@@ -21,4 +21,4 @@ async function _saveSession(status, data) {
       }
   })
 }
-export default _saveSession;
+module.exports = _saveSession;

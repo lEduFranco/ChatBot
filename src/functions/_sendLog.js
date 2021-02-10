@@ -10,4 +10,4 @@ function _sendLog(msg) {
   io.of('/' + portBot).emit('logs', msg)
   console.log(msg)
 }
-export default _sendLog;
+module.exports = _sendLog;

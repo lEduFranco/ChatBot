@@ -1,6 +1,6 @@
-import _initBot from './_initBot';
-import _saveContacts from './_saveContacts';
-import _saveChats from './_saveChats';
+const _initBot = require('./_initBot');
+const _saveContacts = require('./_saveContacts');
+const _saveChats = require('./_saveChats');
 
 let client = [];
 
@@ -10,4 +10,4 @@ async function _restartAll() {
   await _saveContacts()
   await _saveChats(chats)
 }
-export default _restartAll;
+module.exports = _restartAll;

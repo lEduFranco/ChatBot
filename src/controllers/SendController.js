@@ -1,7 +1,7 @@
-import _checkApiKey from '../functions/_checkApiKey';
-import __sendMessage from '../functions/__sendMessage';
+const _checkApiKey = require ('../functions/_checkApiKey');
+const __sendMessage = require ('../functions/__sendMessage');
 
-export default class SendController {
+module.exports = {
   async create (req, res) {
     try {
         var content = req.body;

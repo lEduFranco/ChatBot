@@ -1,5 +1,5 @@
-import checkToken from '../functions/checkToken';
-import _newTicket from '../functions/_newTicket';
+const checkToken = require ('../functions/checkToken');
+const _newTicket = require ('../functions/_newTicket');
 
 
 var authenticated = false;
@@ -7,7 +7,7 @@ let client = [];
 let initiated = [];
 
 
-export default class NewTicketController {
+module.exports = {
   async create (req, res) {
     if (authenticated) {
         var content = req.body;

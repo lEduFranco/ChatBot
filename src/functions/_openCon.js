@@ -1,4 +1,4 @@
-import mysql2 from 'mysql2';
+const mysql2 = require('mysql2');
 
 let dconn = '';
 
@@ -13,4 +13,4 @@ async function _openCon() {
   });
   return conn;
 }
-export default _openCon;
+module.exports = _openCon;

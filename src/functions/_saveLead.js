@@ -1,4 +1,4 @@
-import _openCon from './_openCon';
+const _openCon = require('./_openCon');
 
 var idBot = 0;
 
@@ -29,4 +29,4 @@ async function _saveLead(data, exist) {
       console.log(error)
   }
 }
-export default _saveLead;
+module.exports = _saveLead;

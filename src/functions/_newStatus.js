@@ -1,4 +1,4 @@
-import _sendImg from './_sendImg;'
+const _sendImg = require('./_sendImg');
 
 let client = [];
 let config = '';
@@ -19,4 +19,4 @@ async function _newStatus(data) {
       console.log(error)
   }
 }
-export default _newStatus;
+module.exports = _newStatus;

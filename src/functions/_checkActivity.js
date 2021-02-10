@@ -15,4 +15,4 @@ function _checkActivity(idInt) {
       // _timerActives()
   }
 }
-export default _checkActivity;
+module.exports = _checkActivity;

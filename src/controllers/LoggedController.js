@@ -1,5 +1,5 @@
-import _checkApiKey from '../functions/_checkApiKey';
-import _loadChats from '../functions/_loadChats';
+const _checkApiKey = require ('../functions/_checkApiKey');
+const _loadChats = require ('../functions/_loadChats');
 
 const portBot = process.env.PORTBOT;
 
@@ -10,7 +10,7 @@ const io = require('socket.io')(http, {
     }
 });
 
-export default class LoggedController {
+module.exports = {
   async create (req, res) {
     try {
 

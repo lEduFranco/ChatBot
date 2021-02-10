@@ -1,8 +1,8 @@
-import _checkApiKey from '../functions/_checkApiKey';
-import __transferChat from '../functions/__transferChat';
+const _checkApiKey = require ('../functions/_checkApiKey');
+const __transferChat = require ('../functions/__transferChat');
 
 
-export default class TransferChatController {
+module.exports = {
   async create (req, res) {
     try {
         var content = req.body;

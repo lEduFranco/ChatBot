@@ -13,4 +13,4 @@ function __checkAllowMessage(idInt) {
       console.log(error)
   }
 }
-export default __checkAllowMessage;
+module.exports = __checkAllowMessage;

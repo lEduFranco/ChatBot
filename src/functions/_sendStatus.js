@@ -10,4 +10,4 @@ const io = require('socket.io')(http, {
 function _sendStatus(status) {
   io.of('/' + portBot).emit('status', status)
 }
-export default _sendStatus;
+module.exports = _sendStatus;

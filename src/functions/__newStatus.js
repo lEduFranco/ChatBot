@@ -1,5 +1,5 @@
-import _openCon from './_openCon';
-import _timerStatus from './_timerStatus';
+const _openCon = require('./_openCon');
+const _timerStatus = require('./_timerStatus');
 
 var idBot = 0;
 
@@ -31,4 +31,4 @@ async function __newStatus(data) {
       console.log(error)
   }
 }
-export default __newStatus;
+module.exports = __newStatus;

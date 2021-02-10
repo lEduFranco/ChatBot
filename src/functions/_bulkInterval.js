@@ -1,5 +1,5 @@
-import _openCon from './_openCon';
-import _timerLists from './_timerLists';
+const _openCon = require('./_openCon');
+const _timerLists = require('./_timerLists');
 
 const portBot = process.env.PORTBOT
 
@@ -47,4 +47,4 @@ async function _bulkInterval(idList, sch) {
       }
   })
 }
-export default _bulkInterval;
+module.exports = _bulkInterval;

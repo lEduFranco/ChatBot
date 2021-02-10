@@ -1,8 +1,7 @@
-import checkAccess from '../functions/checkAccess';
+const checkAccess = require ('../functions/checkAccess');
+const { exec } = require ('child_process');
 
-import { exec } from 'child_process';
-
-export default class RomoveController {
+module.exports = {
   async create(req, res) {
     try {
         if (checkAccess(parseInt(req.headers.token))) {

@@ -1,9 +1,9 @@
-import _checkApiKey from '../functions/_checkApiKey';
-import __refreshPicUser from '../functions/__refreshPicUser';
+const _checkApiKey = require ('../functions/_checkApiKey');
+const __refreshPicUser = require ('../functions/__refreshPicUser');
 
 let client = [];
 
-export default class GetUserPicController {
+module.exports = {
   async create (req, res) {
     try {
         var content = req.body;

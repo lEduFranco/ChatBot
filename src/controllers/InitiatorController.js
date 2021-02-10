@@ -1,8 +1,8 @@
-import _checkApiKey from '../functions/_checkApiKey';
-import _initBot from '../functions/_initBot';
-import changeState from '../functions/changeState';
+const _checkApiKey = require('../functions/_checkApiKey');
+const _initBot = require('../functions/_initBot');
+const changeState = require('../functions/changeState');
 
-export default class InitiatorController {
+module.exports = {
   async create (req, res) {
   try {
       var content = req.body;

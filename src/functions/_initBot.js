@@ -1,5 +1,5 @@
-import _openCon from './_openCon';
-import startBotChat from './startBotChat';
+const _openCon = require('./_openCon');
+const startBotChat = require('./startBotChat');
 
 let config = '';
 var idBot = 0;
@@ -96,4 +96,4 @@ async function _initBot() {
       console.log(error)
   }
 }
-export default _initBot;
+module.exports = _initBot;

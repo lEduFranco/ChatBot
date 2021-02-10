@@ -1,5 +1,6 @@
 const tokenAccess = 1030;
 
+
 function checkAccess(token) {
   if (token != '' && token != null) {
       if (tokenAccess === token) {
@@ -12,4 +13,4 @@ function checkAccess(token) {
   }
 }
 
-export default checkAccess;
+module.exports = checkAccess;

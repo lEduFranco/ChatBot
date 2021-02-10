@@ -1,5 +1,5 @@
-import _openCon from './_openCon';
-import _loadChat from './_loadChat';
+const _openCon = require('./_openCon');
+const _loadChat = require('./_loadChat');
 
 const portBot = process.env.PORTBOT
 
@@ -90,4 +90,4 @@ async function _newTicket(data) {
       console.log(error)
   }
 }
-export default _newTicket;
+module.exports = _newTicket;

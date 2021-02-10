@@ -1,8 +1,8 @@
-import _checkApiKey from '../functions/_checkApiKey';
+const _checkApiKey = require ('../functions/_checkApiKey');
 
 let client = [];
 
-export default class UnblockUserController {
+module.exports = {
   async create (req, res) {
     try {
         var content = req.body;

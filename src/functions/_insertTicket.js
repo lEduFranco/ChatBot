@@ -1,4 +1,4 @@
-import _openCon from './_openCon';
+const _openCon = require('./_openCon');
 
 var idBot = 0;
 
@@ -19,4 +19,4 @@ function _insertTicket(data) {
       console.log(error)
   }
 }
-export default _insertTicket;
+module.exports = _insertTicket;

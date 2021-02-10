@@ -1,16 +1,16 @@
-import _sendLog from './_sendLog';
-import _saveSession from './_saveSession';
-import _sendStatus from './_sendStatus';
-import _initBot from './_initBot';
-import _sendQR from './_sendQR';
-import _pmRestart from './_pmRestart';
-import _saveContacts from './_saveContacts';
-import _sendUnreads from './_sendUnreads';
-import _readLists from './_readLists';
-import _readStatus from './_readStatus';
-import _readMessagesScheduled from './_readMessagesScheduled';
-import _notifyAdmin from './_notifyAdmin';
-import sendBot from './sendBot';
+const _sendLog = require('./_sendLog');
+const _saveSession = require('./_saveSession');
+const _sendStatus = require('./_sendStatus');
+const _initBot = require('./_initBot');
+const _sendQR = require('./_sendQR');
+const _pmRestart = require('./_pmRestart');
+const _saveContacts = require('./_saveContacts');
+const _sendUnreads = require('./_sendUnreads');
+const _readLists = require('./_readLists');
+const _readStatus = require('./_readStatus');
+const _readMessagesScheduled = require('./_readMessagesScheduled');
+const _notifyAdmin = require('./_notifyAdmin');
+const sendBot = require('./sendBot');
 
 let config = '';
 let sessionData = '';
@@ -151,4 +151,4 @@ async function startBotChat() {
       }
   })
 }
-export default startBotChat;
+module.exports = startBotChat;

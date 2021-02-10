@@ -1,4 +1,4 @@
-import checkToken from '../functions/checkToken';
+const checkToken = require('../functions/checkToken');
 
 var authenticated = false;
 let attendants = [];
@@ -13,7 +13,7 @@ const io = require('socket.io')(http, {
 });
 
 
-export default class AtualizaentradaController {
+module.exports = {
  async create(req, res) {
     if (authenticated) {
         var content = req.body;

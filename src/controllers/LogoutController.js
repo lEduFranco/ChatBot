@@ -1,14 +1,14 @@
-import _checkApiKey from '../functions/_checkApiKey';
-import _sendStatus from '../functions/_sendStatus';
-import _saveStatistics from '../functions/_saveStatistics';
-import _pmRestart from '../functions/_pmRestart';
+const _checkApiKey = require ('../functions/_checkApiKey');
+const _sendStatus = require ('../functions/_sendStatus');
+const _saveStatistics = require ('../functions/_saveStatistics');
+const _pmRestart = require ('../functions/_pmRestart');
 
 
 var started = false
 var authenticated = false;
 
 
-export default class LogoutController {
+module.exports = {
   async create (req, res) {
     try {
         var content = req.body;

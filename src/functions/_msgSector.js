@@ -1,4 +1,4 @@
-import _sendImg from './_sendImg;'
+const _sendImg = require('./_sendImg');
 
 let config = '';
 let sectors = []
@@ -24,4 +24,4 @@ async function _msgSector(name, gender, idInt) {
       await client.sendMessage(idInt, msgInicio)
   }
 }
-export default  _msgSector;
+module.exports =  _msgSector;

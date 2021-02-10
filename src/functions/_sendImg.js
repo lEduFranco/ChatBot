@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
 const { v4: uuidv4 } = require('uuid');
 
@@ -24,4 +24,4 @@ async function _sendImg(idChat, Texto, url) {
       }
   })
 }
-export default _sendImg;
+module.exports = _sendImg;

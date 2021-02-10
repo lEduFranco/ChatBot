@@ -1,4 +1,4 @@
-import _openCon from './_openCon';
+const _openCon = require('./_openCon');
 
 var idBot = 0;
 let config = '';
@@ -14,4 +14,4 @@ async function changeState(state) {
       console.log(error)
   }
 }
-export default changeState;
+module.exports = changeState;

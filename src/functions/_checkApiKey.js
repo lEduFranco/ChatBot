@@ -10,4 +10,4 @@ function _checkApiKey(key) {
       return false
   }
 }
-export default _checkApiKey;
+module.exports = _checkApiKey;

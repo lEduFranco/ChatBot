@@ -1,6 +1,6 @@
-import _openCon from './_openCon';
-import _getChatsSaved from './_getChatsSaved';
-import _sendLog from './_sendLog';
+const _openCon = require('./_openCon');
+const _getChatsSaved = require('./_getChatsSaved');
+const _sendLog = require('./_sendLog');
 
 var idBot = 0;
 
@@ -36,4 +36,4 @@ async function _saveChats(data) {
       console.log(error)
   }
 }
-export default _saveChats;
+module.exports = _saveChats;

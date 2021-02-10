@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
 const { v4: uuidv4 } = require('uuid');
 
@@ -30,4 +30,4 @@ async function _sendFile(idChat, url) {
       })
   })
 }
-export default _sendFile;
+module.exports = _sendFile;

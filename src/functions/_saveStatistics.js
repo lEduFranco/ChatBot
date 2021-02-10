@@ -1,4 +1,4 @@
-import _openCon from './_openCon';
+const _openCon = require('./_openCon');
 
 var idBot = 0;
 
@@ -43,4 +43,4 @@ async function _saveStatistics() {
       console.log(error)
   }
 }
-export default _saveStatistics;
+module.exports = _saveStatistics;

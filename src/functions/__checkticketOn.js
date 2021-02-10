@@ -1,4 +1,4 @@
-import _openCon from './_openCon';
+const _openCon = require ('./_openCon');
 
 var idBot = 0;
 
@@ -14,4 +14,4 @@ async function __checkticketOn(id) {
       })
   })
 }
-export default __checkticketOn;
+module.exports = __checkticketOn;

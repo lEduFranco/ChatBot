@@ -1,6 +1,6 @@
-import __newRequest from '../functions/__newRequest';
+const __newRequest = require ('../functions/__newRequest');
 
-export default class NewRequestController {
+module.exports = {
   async create (req, res) {
     try {
         var content = req.body;

@@ -10,4 +10,4 @@ async function _getChatById(number) {
       }
   })
 }
-export default _getChatById;
+module.exports = _getChatById;

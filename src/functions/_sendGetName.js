@@ -8,4 +8,4 @@ async function _sendGetName(number) {
       console.log(error)
   }
 }
-export default _sendGetName;
+module.exports = _sendGetName;

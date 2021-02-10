@@ -1,8 +1,8 @@
-import _checkNull from './_checkNull';
-import getGender from './getGender';
-import _checkLead from './_checkLead';
-import _saveLead from './_saveLead';
-import _saveTicket from './_saveTicket';
+const _checkNull = require('./_checkNull');
+const getGender = require('./getGender');
+const _checkLead = require('./_checkLead');
+const _saveLead = require('./_saveLead');
+const _saveTicket = require('./_saveTicket');
 
 let config = '';
 let client = [];
@@ -56,4 +56,4 @@ async function setHumanChat(data, cSchedule, idLead) {
       }
   }
 }
-export default setHumanChat;
+module.exports = setHumanChat;

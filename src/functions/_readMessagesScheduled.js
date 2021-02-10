@@ -1,6 +1,6 @@
-import _openCon from './_openCon';
-import __checkAllowMessage from './__checkAllowMessage';
-import delay from './delay';
+const _openCon = require('./_openCon');
+const __checkAllowMessage = require('./__checkAllowMessage');
+const delay = require('./delay');
 
 var idBot = 0;
 
@@ -39,4 +39,4 @@ async function _readMessagesScheduled() {
       }
   })
 }
-export default _readMessagesScheduled;
+module.exports = _readMessagesScheduled;

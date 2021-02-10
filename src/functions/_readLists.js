@@ -1,5 +1,5 @@
-import _openCon from './_openCon'
-import _timerLists from  './_timerLists';
+const _openCon = require('./_openCon');
+const _timerLists = require('./_timerLists');
 
 let sendList = [];
 var idBot = 0;
@@ -23,4 +23,4 @@ async function _readLists() {
       console.log(error)
   }
 }
-export default _readLists;
+module.exports = _readLists;

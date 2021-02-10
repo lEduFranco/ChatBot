@@ -1,6 +1,6 @@
-import checkAccess from '../functions/checkAccess';
+const checkAccess = require ('../functions/checkAccess');
 
-export default class PowerOnCrontroller {
+module.exports = {
   async create(req, res) {
     try {
         console.log('aqui')
@@ -8,7 +8,7 @@ export default class PowerOnCrontroller {
         if (checkAccess(parseInt(req.headers.token))) {
             var portBot = req.body.portBot
 
-            exec('export PORTBOT=' + portBot + ' && pm2 start 1.js --name ' + portBot + ' && pm2 save --force', (error, stdout, stderr) => {
+            exec('export PORTBOT=' + portBot + ' && pm2 start bot.js --name ' + portBot + ' && pm2 save --force', (error, stdout, stderr) => {
                 if (error) {
                     console.log(`error: ${error.message}`);
                     return

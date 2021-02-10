@@ -16,4 +16,4 @@ async function __getValidPhone(phone) {
       resolve(null)
   }
 }
-export default __getValidPhone;
+module.exports = __getValidPhone;

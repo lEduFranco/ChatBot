@@ -1,4 +1,4 @@
-import _getList from './_getList';
+const _getList = require('./_getList');
 
 var __timerLists = '';
 let sendList = [];
@@ -25,4 +25,4 @@ function _timerLists() {
         }
     }, 5000);
 }
-export default _timerLists;
+module.exports = _timerLists;

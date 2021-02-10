@@ -1,5 +1,5 @@
-import _openCon from './_openCon';
-import _sendList from './_sendList';
+const _openCon = require('./_openCon');
+const _sendList = require('./_sendList');
 
 var idBot = 0;
 
@@ -15,4 +15,4 @@ async function _getList(idList) {
       console.log(error)
   }
 }
-export default _getList;
+module.exports = _getList;

@@ -33,4 +33,4 @@ async function __rdCreateDeal(data) {
       }
   })
 }
-export default __rdCreateDeal;
+module.exports = __rdCreateDeal;

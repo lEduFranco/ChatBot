@@ -1,10 +1,10 @@
-import checkToken from '../functions/checkToken';
-import _loadChats from '../functions/_loadChats';
+const checkToken = require ('../functions/checkToken');
+   const _loadChats = require ('../functions/_loadChats');
 
 var authenticated = false;
 
 
-export default class UserChatController {
+module.exports = {
   async create (req, res) {
     if (authenticated) {
         var content = req.body;

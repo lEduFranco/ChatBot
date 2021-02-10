@@ -1,4 +1,4 @@
-import AWS from 'aws-sdk';
+const AWS = require('aws-sdk');
 const spacesEndpoint = new AWS.Endpoint('');
 
 const s3 = new AWS.S3({
@@ -26,4 +26,4 @@ async function __uploadSpace(path, file) {
       }
   })
 }
-export default __uploadSpace;
+module.exports = __uploadSpace;

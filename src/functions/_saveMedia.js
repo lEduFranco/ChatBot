@@ -1,6 +1,6 @@
-import uploadMedia from './uploadMedia';
+const uploadMedia = require('./uploadMedia');
 
-import fs from 'fs';
+const fs = require('fs');
 
 async function _saveMedia(msg) {
   try {
@@ -46,4 +46,4 @@ async function _saveMedia(msg) {
       console.log(error)
   }
 }
-export default _saveMedia;
+module.exports = _saveMedia;

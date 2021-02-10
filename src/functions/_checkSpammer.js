@@ -22,4 +22,4 @@ async function _checkSpammer(id) {
       console.log(error)
   }
 }
-export default _checkSpammer;
+module.exports = _checkSpammer;

@@ -10,4 +10,4 @@ async function _getContactById(number) {
       }
   })
 }
-export default _getContactById;
+module.exports = _getContactById;

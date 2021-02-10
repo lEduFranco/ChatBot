@@ -1,9 +1,9 @@
-import _getImagesList from './_getImagesList';
-import _checkScheduleMessage from './_checkScheduleMessage';
-import _openCon from './_openCon';
-import _sendMsg from './_sendMsg';
-import _bulkInterval from './_bulkInterval';
-import delay from './delay';
+const _getImagesList = require('./_getImagesList');
+const _checkScheduleMessage = require('./_checkScheduleMessage');
+const _openCon = require('./_openCon');
+const _sendMsg = require('./_sendMsg');
+const _bulkInterval = require('./_bulkInterval');
+const delay = require('./delay');
 
 let config = '';
 var idBot = 0;
@@ -129,4 +129,4 @@ async function _sendList(data) {
       console.log(error)
   }
 }
-export default _sendList;
+module.exports = _sendList;

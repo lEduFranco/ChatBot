@@ -1,7 +1,7 @@
-import _openCon from './_openCon';
-import _getContactsSaved from './_getContactsSaved';
-import _getLeads from './_getLeads';
-import _sendLog from './_sendLog';
+const _openCon = require('./_openCon');
+const _getContactsSaved = require('./_getContactsSaved');
+const _getLeads = require('./_getLeads');
+const _sendLog = require('./_sendLog');
 
 let client = [];
 
@@ -51,4 +51,4 @@ async function _saveContacts() {
       _sendLog('...beleza...estou pronto para começar!...')
   }
 }
-export default _saveContacts;
+module.exports = _saveContacts;

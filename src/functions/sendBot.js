@@ -1,19 +1,19 @@
-import _saveStatistics from  './_saveStatistics';
-import _pmRestart from  './_pmRestart';
-import _saveSession from  './_saveSession';
-import _pmRestartVPS from  './_pmRestartVPS';
-import _leaveList from  './_leaveList';
-import _checkSchedule from  './_checkSchedule';
-import getGender from  './getGender';
-import _msgSector from  './_msgSector';
-import _sendImgs from  './_sendImgs';
-import _saveTicket from  './_saveTicket';
-import closeTicket from  './closeTicket';
-import _saveMedia from  './_saveMedia';
-import setHumanChat from  './setHumanChat';
-import _checkNull from  './_checkNull';
-import _saveLead from  './_saveLead';
-import _sendGetName from  './_sendGetName';
+const _saveStatistics = require('./_saveStatistics');
+const _pmRestart = require('./_pmRestart');
+const _saveSession = require('./_saveSession');
+const _pmRestartVPS = require('./_pmRestartVPS');
+const _leaveList = require('./_leaveList');
+const _checkSchedule = require('./_checkSchedule');
+const getGender = require('./getGender');
+const _msgSector = require('./_msgSector');
+const _sendImgs = require('./_sendImgs');
+const _saveTicket = require('./_saveTicket');
+const closeTicket = require('./closeTicket');
+const _saveMedia = require('./_saveMedia');
+const setHumanChat = require('./setHumanChat');
+const _checkNull = require('./_checkNull');
+const _saveLead = require('./_saveLead');
+const _sendGetName = require('./_sendGetName');
 
 
 let info = '';
@@ -316,7 +316,7 @@ async function sendBot(message) {
 
                           if (message.body == '#') {
                               if (config.chatbot) {
-                                  await closeTicket({ 'idTicket': e.idTicket, 'idx': idx, 'idInt': message.from })
+                                  await closeTicket({ 'idTicket': e.idTicket, 'idx': idx, 'idInt': message.from})
                               }
                           } else {
                               var ab = ''
@@ -388,7 +388,7 @@ async function sendBot(message) {
                                           nome = _checkNull(contato.pushname) ? contato.pushname : ''
                                       }
                                       if (!_checkNull(nome)) {
-                                          capturing.push({ 'numero': message.from })
+                                          capturing.push({ 'numero': message.from})
                                           await _sendGetName(message.from)
                                       } else {
                                           initiated.push({ 'nomeCliente': nome, 'numero': message.from, 'etapa': 0, 'tipo': 'setor' })
@@ -424,7 +424,7 @@ async function sendBot(message) {
                                       nome = _checkNull(contato.pushname) ? contato.pushname : ''
                                   }
                                   if (!_checkNull(nome)) {
-                                      capturing.push({ 'numero': message.from })
+                                      capturing.push({ 'numero': message.from})
                                       await _sendGetName(message.from)
                                   } else {
                                       initiated.push({ 'nomeCliente': nome, 'numero': message.from, 'etapa': 0, 'tipo': 'setor' })
@@ -462,11 +462,11 @@ async function sendBot(message) {
                                       await _msgSector(nome, gender, message.from)
                                       initiated.push({ 'nomeCliente': nome, 'numero': message.from, 'etapa': 0, 'tipo': 'setor' })
                                   } else {
-                                      capturing.push({ 'numero': message.from })
+                                      capturing.push({ 'numero': message.from})
                                       await _sendGetName(message.from)
                                   }
                               } else {
-                                  capturing.push({ 'numero': message.from })
+                                  capturing.push({ 'numero': message.from})
                                   await _sendGetName(message.from)
                               }
                           }
@@ -481,4 +481,4 @@ async function sendBot(message) {
       }
   })
 }
-export default sendBot;
+module.exports = sendBot;

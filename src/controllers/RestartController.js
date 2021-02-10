@@ -1,7 +1,7 @@
-import _checkApiKey from  '../functions/_checkApiKey';
-import _pmRestart from  '../functions/_pmRestart';
+const _checkApiKey  = require ('../functions/_checkApiKey');
+const _pmRestart  = require ('../functions/_pmRestart');
 
-export default class RestartController {
+module.exports = {
   async create (req, res) {
   try {
     var content = req.body;

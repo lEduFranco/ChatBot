@@ -1,10 +1,10 @@
-import __getValidPhone from './__getValidPhone';
-import checkPhone from './checkPhone';
-import _checkNull from './_checkNull';
-import getGender from './getGender';
-import _saveLead from './_saveLead';
-import __checkticketOn from './__checkticketOn';
-import _insertTicket from './_insertTicket';
+const __getValidPhone = require ('./__getValidPhone');
+const checkPhone = require ('./checkPhone');
+const _checkNull = require ('./_checkNull');
+const getGender = require ('./getGender');
+const _saveLead = require ('./_saveLead');
+const __checkticketOn = require ('./__checkticketOn');
+const _insertTicket = require ('./_insertTicket');
 
 let client = [];
 let leads = '';
@@ -55,4 +55,4 @@ async function __newchat(data) {
       console.log(error)
   }
 }
-export default __newchat;
+module.exports = __newchat;
