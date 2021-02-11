@@ -1,11 +1,49 @@
 const routes = require('./routes/routes');
+
+const _getBot = require('./functions/_getBot');
 const app = require('express')();
+const fs = require('fs');
 
-
+const BD_CONNECT_BOT = './connection.json';
+global.dconn = '';
 
 const portBot = process.env.PORTBOT
-var whitelist = ['*'];
 
+global.whitelist = ['*'];
+global.apiKey = '';
+
+global.idBot = 0;
+
+global.config = '';
+global.authenticated = false;
+global.started = false
+
+global.sectors = []
+global.sectors_ = []
+global.subsectors = []
+global.subsectors_ = []
+global.schedules = []
+global.answers = []
+
+global.ms
+
+global.sessionData = '';
+global.client = [];
+global.initiated = [];
+global.attendants = [];
+global.countQr = 0;
+
+global.qrMsg = false;
+
+
+
+if (fs.existsSync(BD_CONNECT_BOT)) {
+  fs.readFile(BD_CONNECT_BOT, async (err, data) => {
+      if (err) throw err;
+      global.dconn = JSON.parse(data)
+      await _getBot()
+  })
+}
 
 var cors = require('cors');
 app.use(cors({
@@ -215,8 +253,8 @@ io.of('/' + portBot).on('connection', async socket => {
 });
 
 
+
 app.use(routes);
-// app.listen(3333);
 
 http.listen(portBot, function () {
     var addr = http.address();

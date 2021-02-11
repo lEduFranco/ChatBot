@@ -1,6 +1,6 @@
-const Router = require('express');
+const express = require('express');
 
-const routes = Router();
+const routes = express.Router();
 const portBot = process.env.PORTBOT
 
 const InitiatorController = require('../controllers/InitiatorController') ;
@@ -25,9 +25,8 @@ const GetUserPicController = require('../controllers/GetUserPicController') ;
 const NewChatController = require('../controllers/NewChatController') ;
 const NewRequestController = require('../controllers/NewRequestController') ;
 const SendController = require('../controllers/SendController') ;
-const RemoveController = require('../controllers/RemoveController') ;
-const PowerOnController = require('../controllers/PowerOnController') ;
-
+// const RemoveController = require('../controllers/RemoveController') ;
+// const PowerOnController = require('../controllers/PowerOnController') ;
 
 routes.post('/' + portBot + '/inicializador', InitiatorController.create);
 routes.post('/' + portBot + '/restart', RestartController.create);
@@ -51,7 +50,7 @@ routes.post('/' + portBot + '/getuserpic', GetUserPicController.create);
 routes.post('/' + portBot + '/newchat', NewChatController.create);
 routes.post('/' + portBot + '/newrequest', NewRequestController.create);
 routes.post('/' + portBot + '/send', SendController.create);
-routes.post('/3000/remove', RemoveController.create);
-routes.post('/3000/poweron', PowerOnController.create);
+// routes.post('/3000/remove', RemoveController.create);
+// routes.post('/3000/poweron', PowerOnController.create);
 
 module.exports = routes;

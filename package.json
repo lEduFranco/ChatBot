@@ -2,8 +2,9 @@
   "name": "apps",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/bot.js",
   "scripts": {
+    "dev": "nodemon export PORTBOT=3001 && node bot.js --name 3001",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -35,6 +36,7 @@
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",
+    "nodemon": "^2.0.7",
     "prettier": "^2.2.1"
   }
 }

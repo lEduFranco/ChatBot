@@ -12,18 +12,10 @@ const _readMessagesScheduled = require('./_readMessagesScheduled');
 const _notifyAdmin = require('./_notifyAdmin');
 const sendBot = require('./sendBot');
 
-let config = '';
-let sessionData = '';
-let client = [];
-let initiated = [];
-let attendants = [];
-var countQr = 0;
-
-var qrMsg = false;
-var authenticated = false;
-var started = false
+const qrcodegen = require('qrcode-terminal');
 
 const portBot = process.env.PORTBOT
+
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http, {
@@ -34,11 +26,11 @@ const io = require('socket.io')(http, {
 
 
 async function startBotChat() {
-  if (config.session != null && config.session != '') {
-      sessionData = JSON.parse(config.session)
-      client = new Client({
+  if (global.config.session != null && global.config.session != '') {
+    global.sessionData = JSON.parse(global.config.session)
+    global.client = new Client({
           // restartOnAuthFail: true,
-          session: sessionData,
+          session: global.sessionData,
           headless: true,
           args: ['--no-sandbox',
               '--disable-setuid-sandbox',
@@ -51,7 +43,7 @@ async function startBotChat() {
           ]
       })
   } else {
-      client = new Client({
+    global.client = new Client({
           // restartOnAuthFail: true,
           headless: true,
           args: ['--no-sandbox',
@@ -66,45 +58,45 @@ async function startBotChat() {
       })
   }
   _sendLog('O Bot está acordando 🥱...')
-  _sendLog('...olá, eu sou o ' + config.nomeBot + ' 🤖 e já estou me configurando para começar...')
-  client.initialize();
-  client.on('authenticated', (session) => {
-      sessionData = session;
+  _sendLog('...olá, eu sou o ' + global.config.nomeBot + ' 🤖 e já estou me configurando para começar...')
+  global.client.initialize();
+  global.client.on('authenticated', (session) => {
+    global.sessionData = session;
       _saveSession(true, session)
       _sendLog('...pronto, estou validado e já salvei meus dados de acesso...')
   });
-  client.on('auth_failure', async msg => {
+  global.client.on('auth_failure', async msg => {
       _sendLog('Opa! Deu falha na autenticação...')
-      authenticated = false
+      global.authenticated = false
       // _saveSession(false, null)
       // sessionData = ''
       _sendStatus('desconectado');
       _initBot()
   });
-  client.on('qr', async (qr) => {
-      countQr++
-      if (countQr <= 5) {
-          if (!qrMsg) {
-              qrMsg = true
+  global.client.on('qr', async (qr) => {
+    global.countQr++
+      if (global.countQr <= 5) {
+          if (!global.qrMsg) {
+            global.qrMsg = true
               _sendLog('...leia o QR-CODE por favor...assim eu consigo me conectar :)')
           }
           _sendQR(qr)
           qrcodegen.generate(qr, { small: true });
-      } else if (countQr == 6) {
+      } else if (global.countQr == 6) {
           console.log(new Date(Date.now()).toLocaleTimeString(), ' - Nova tentiva de login em 60 segundos.')
           setTimeout(() => {
               _pmRestart()
           }, 1000 * 60);
       }
   });
-  client.on('ready', async (data) => {
+  global.client.on('ready', async (data) => {
       _sendLog('...ótimo, consegui me conectar!...');
-      info = client.info
-      authenticated = true
+      info = global.client.info
+      global.authenticated = true
       await _saveContacts()
       _sendStatus('conectado')
       await _restartBot()
-      if (config.sendUnreads) {
+      if (global.config.sendUnreads) {
           await _sendUnreads()
       }
       await _readLists()
@@ -114,22 +106,22 @@ async function startBotChat() {
       console.log(new Date(Date.now()).toLocaleTimeString(), ' - Bot ativado')
       _notifyAdmin(new Date(Date.now()).toLocaleTimeString() + ' - Bot ativado')
   });
-  client.on('change_state', (state) => {
+  global.client.on('change_state', (state) => {
       console.log(new Date(Date.now()).toLocaleTimeString() + ' - state', state)
   })
-  client.on('change_battery', (batteryInfo) => {
+  global.client.on('change_battery', (batteryInfo) => {
       const { battery, plugged } = batteryInfo;
       console.log(`Bateria: ${battery}% - Carregando? ${plugged}`);
   });
-  client.on('disconnected', (reason) => {
+  global.client.on('disconnected', (reason) => {
       console.log(new Date(Date.now()).toLocaleTimeString() + ' - disconnected', reason);
-      authenticated = false;
-      started = false;
+      global.authenticated = false;
+      global.started = false;
       //_saveSession(false, null); DESATIVADO 28/01/2021
       _sendStatus('desconectado');
       _pmRestart();
   });
-  client.on('message', async message => {
+  global.client.on('message', async message => {
       if (message.from == undefined) {
           return false
       }
@@ -139,11 +131,11 @@ async function startBotChat() {
 
       // }
   })
-  client.on('message_ack', async message_ack => {
+  global.client.on('message_ack', async message_ack => {
       let obj = { id: message_ack.id.id, ack: message_ack.ack }
-      let idx = initiated.findIndex((e) => e.numero == message_ack.to)
+      let idx = global.initiated.findIndex((e) => e.numero == message_ack.to)
       if (idx != -1) {
-          let ea = attendants.filter((e) => e.idAtendente == initiated[idx].idAtend).map((e) => {
+          let ea = global.attendants.filter((e) => e.idAtendente == initiated[idx].idAtend).map((e) => {
               io.of('/' + portBot).to(e.idSocket).emit('message_ack', obj)
           })
           if (ea.length == 0) {
