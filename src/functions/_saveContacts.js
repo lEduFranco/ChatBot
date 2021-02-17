@@ -3,14 +3,10 @@ const _getContactsSaved = require('./_getContactsSaved');
 const _getLeads = require('./_getLeads');
 const _sendLog = require('./_sendLog');
 
-let client = [];
-
-var idBot = 0;
-
 async function _saveContacts() {
   try {
       const conn = await _openCon();
-      let contacts = await client.getContacts();
+      let contacts = await global.client.getContacts();
       let contacts_ = await _getContactsSaved()
       var run = false
       let obj = []
@@ -32,10 +28,10 @@ async function _saveContacts() {
               if (contacts_.length > 0) {
                   var result = contacts_.findIndex((e) => e.idInt == element.id._serialized && element.id.server == 'c.us')
                   if (result == -1) {
-                      obj.push([idBot, element.id._serialized, 1, n, element.number, picUser, salvo, ag, new Date(Date.now()), 1])
+                      obj.push([global.idBot, element.id._serialized, 1, n, element.number, picUser, salvo, ag, new Date(Date.now()), 1])
                   }
               } else {
-                  obj.push([idBot, element.id._serialized, 1, n, element.number, picUser, salvo, ag, new Date(Date.now()), 1])
+                  obj.push([global.idBot, element.id._serialized, 1, n, element.number, picUser, salvo, ag, new Date(Date.now()), 1])
               }
           }
       })

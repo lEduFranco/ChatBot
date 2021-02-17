@@ -1,25 +1,18 @@
 const _getList = require('./_getList');
 
-var __timerLists = '';
-let sendList = [];
-
-var sendListTimer = false;
-var stopTransmission = false;
-var sendListRun = false;
-
 function _timerLists() {
-    sendListTimer = true
-    console.log('listas', sendList)
-    __timerLists = setInterval(() => {
-        var idx = sendList.findIndex((e) => e.dateOut <= Date.now())
+  global.sendListTimer = true
+    console.log('listas', global.sendList)
+    global.__timerLists = setInterval(() => {
+        var idx = global.sendList.findIndex((e) => e.dateOut <= Date.now())
         if (idx != -1) {
-            if (!sendListRun) {
+            if (!global.sendListRun) {
                 stopTransmission = false
-                _getList(sendList[idx].id)
-                sendList.splice(idx, 1);
-                if (sendList.length == 0) {
-                    clearInterval(__timerLists)
-                    sendListTimer = false
+                _getList(global.sendList[idx].id)
+                global.sendList.splice(idx, 1);
+                if (global.sendList.length == 0) {
+                    clearInterval(global.__timerLists)
+                    global.sendListTimer = false
                 }
             }
         }

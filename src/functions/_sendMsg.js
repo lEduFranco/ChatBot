@@ -1,8 +1,5 @@
 const getGender = require('./getGender');
 
-let client = [];
-let countSendMsg = [];
-
 const portBot = process.env.PORTBOT
 const app = require('express')();
 const http = require('http').Server(app);
@@ -21,14 +18,14 @@ async function _sendMsg(number, name, body, image, idImg, idMsg) {
 
           if (image != null) {
               const media = MessageMedia.fromFilePath(image);
-              await client.sendMessage(number, media, { caption: idImg == 0 ? message : '' }).then((g) => {
-                  countSendMsg.push({ status: 1, number: number, name: name, time: Date.now() })
+              await global.client.sendMessage(number, media, { caption: idImg == 0 ? message : '' }).then((g) => {
+                global.countSendMsg.push({ status: 1, number: number, name: name, time: Date.now() })
                   io.of('/' + portBot).emit('sendMessages', { status: 1, number: number, name: name, time: Date.now(), index: idMsg })
                   resolve('success')
               }).catch((error) => resolve("error1", error))
           } else {
-              await client.sendMessage(number, message).then((g) => {
-                  countSendMsg.push({ status: 1, number: number, name: name, time: Date.now() })
+              await global.client.sendMessage(number, message).then((g) => {
+                global.countSendMsg.push({ status: 1, number: number, name: name, time: Date.now() })
                   io.of('/' + portBot).emit('sendMessages', { status: 1, number: number, name: name, time: Date.now(), index: idMsg })
                   resolve('success')
               }).catch((error) => resolve("error2", error))

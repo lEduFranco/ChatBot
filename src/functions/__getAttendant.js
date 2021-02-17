@@ -1,12 +1,10 @@
 const _openCon = require ('./_openCon');
 
-var idBot = 0;
-
 async function __getAttendant(id) {
   try {
       return new Promise(async (resolve) => {
           const conn = await _openCon()
-          conn.promise().query("SELECT nomeAtend FROM tbAttendants WHERE id='" + id + "' AND idBot=" + idBot + "").then(([rows]) => {
+          conn.promise().query("SELECT nomeAtend FROM tbAttendants WHERE id='" + id + "' AND idBot=" + global.idBot + "").then(([rows]) => {
               if (rows.length > 0) {
                   resolve(rows[0].nomeAtend)
               } else {

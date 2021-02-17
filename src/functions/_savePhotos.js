@@ -1,12 +1,10 @@
 const _openCon = require('./_openCon');
 
-var idBot = 0;
-
 async function _savePhotos() {
   const conn = await _openCon()
   try {
       let list = []
-      await conn.promise().query('SELECT idInt FROM tbLeads WHERE idBot=' + idBot + '').then(async ([rows, fields]) => {
+      await conn.promise().query('SELECT idInt FROM tbLeads WHERE idBot=' + global.idBot + '').then(async ([rows, fields]) => {
           var count = rows.length
           let data = rows
           let obj = []

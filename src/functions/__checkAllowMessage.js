@@ -1,9 +1,9 @@
-let leads = ''
+
 function __checkAllowMessage(idInt) {
   try {
-      let a = leads.findIndex((e) => e.idInt == idInt)
+      let a = global.leads.findIndex((e) => e.idInt == idInt)
       if (a != -1) {
-          if (leads[a].acTransmissao) {
+          if (global.leads[a].acTransmissao) {
               return true
           } else { return false }
       } else {

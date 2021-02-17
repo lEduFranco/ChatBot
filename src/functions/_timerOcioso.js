@@ -1,33 +1,25 @@
 const closeTicket = require('./closeTicket');
 
-var __timerOcioso = '';
-var cooldownsRun = false;
-
-let cooldowns = [];
-let client = [];
-let initiated = [];
-let config = '';
-
 function _timerOcioso() {
-    __timerOcioso = setInterval(async () => {
-        cooldownsRun = true
-        cooldowns.map(async (e, i) => {
+    global.__timerOcioso = setInterval(async () => {
+      global.cooldownsRun = true
+        global.cooldowns.map(async (e, i) => {
             if (e.time < new Date(Date.now())) {
                 var n = e.idInt
-                var idx = initiated.findIndex((e) => e.numero == n)
+                var idx = global.initiated.findIndex((e) => e.numero == n)
                 if (idx != -1) {
-                    let obj = { 'idTicket': initiated[idx].idTicket, 'idx': idx, 'idInt': e.idInt }
+                    let obj = { 'idTicket': global.initiated[idx].idTicket, 'idx': idx, 'idInt': e.idInt }
                     await closeTicket(obj)
                 }
-                cooldowns.splice(i, 1)
-                var msgOcioso = config.msgOcioso
-                msgOcioso = msgOcioso.replace('%TEMPO%', config.tempoLimite + ' minutos')
-                return await client.sendMessage(n, msgOcioso);
+                global.cooldowns.splice(i, 1)
+                var msgOcioso = global.config.msgOcioso
+                msgOcioso = msgOcioso.replace('%TEMPO%', global.config.tempoLimite + ' minutos')
+                return await global.client.sendMessage(n, msgOcioso);
             }
         })
-        if (cooldowns.length == 0) {
+        if (global.cooldowns.length == 0) {
             clearInterval(_timerOcioso)
-            cooldownsRun = false
+            global.cooldownsRun = false
         }
     }, 5000)
 }

@@ -1,7 +1,5 @@
 const _openCon = require('./_openCon');
 
-var idBot = 0;
-
 let countClick = { 'sectors': [], 'subsectors': [] }
 
 async function _saveStatistics() {
@@ -26,10 +24,10 @@ async function _saveStatistics() {
               let c_s = get(countClick.sectors);
               let c_ss = get(countClick.subsectors);
               const f = c_s.map(async (element) => {
-                  await conn.promise().query('INSERT INTO tbStatistics SET idBot=' + idBot + ', idSector=' + element.id + ', clicks=' + element.clicks + ', date=NOW()').catch(console.log)
+                  await conn.promise().query('INSERT INTO tbStatistics SET idBot=' + global.idBot + ', idSector=' + element.id + ', clicks=' + element.clicks + ', date=NOW()').catch(console.log)
               });
               const g = c_ss.map(async (element) => {
-                  await conn.promise().query('INSERT INTO tbStatistics SET idBot=' + idBot + ', idSubsector=' + element.id + ', clicks=' + element.clicks + ', date=NOW()').catch(console.log)
+                  await conn.promise().query('INSERT INTO tbStatistics SET idBot=' + global.idBot + ', idSubsector=' + element.id + ', clicks=' + element.clicks + ', date=NOW()').catch(console.log)
               });
               await Promise.all(f, g)
               countClick.sectors = []

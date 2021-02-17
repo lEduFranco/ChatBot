@@ -7,7 +7,7 @@ module.exports = {
     var content = req.body;
     var key = req.headers.authorization
     if (_checkApiKey(key)) {
-        if (started) {
+        if (global.started) {
             _pmRestart()
             res.end('ok');
             return false

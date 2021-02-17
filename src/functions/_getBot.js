@@ -1,4 +1,3 @@
-
 const _openCon = require('./_openCon');
 const _initBot = require('./_initBot');
 

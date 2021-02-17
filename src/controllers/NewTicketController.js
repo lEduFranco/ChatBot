@@ -1,28 +1,22 @@
 const checkToken = require ('../functions/checkToken');
 const _newTicket = require ('../functions/_newTicket');
 
-
-var authenticated = false;
-let client = [];
-let initiated = [];
-
-
 module.exports = {
   async create (req, res) {
-    if (authenticated) {
+    if (global.authenticated) {
         var content = req.body;
         var authToken = content.token;
         if (checkToken(authToken)) {
-            var img = await client.getProfilePicUrl(content.idInt)
+            var img = await global.client.getProfilePicUrl(content.idInt)
             var phone = content.idInt.split('@')[0]
-            var idx = initiated.findIndex((e) => e.numero == content.idInt)
+            var idx = global.initiated.findIndex((e) => e.numero == content.idInt)
             if (idx == -1) {
-                initiated.push({ 'nomeCliente': content.nomeCliente, 'numero': content.idInt, 'etapa': 2, 'tipo': 'atendhumano' })
+                global.initiated.push({ 'nomeCliente': content.nomeCliente, 'numero': content.idInt, 'etapa': 2, 'tipo': 'atendhumano' })
             } else {
-                initiated[idx].etapa = 2
-                initiated[idx].tipo = 'atendHumano'
+                global.initiated[idx].etapa = 2
+                global.initiated[idx].tipo = 'atendHumano'
             }
-            var idx = initiated.findIndex((e) => e.numero == content.idInt)
+            var idx = global.initiated.findIndex((e) => e.numero == content.idInt)
             let obj = {
                 'id': idx,
                 'nomeCliente': content.nomeCliente,

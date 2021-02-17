@@ -1,5 +1,3 @@
-let schedules = [];
-
 function _checkSchedule() {
   var options = { weekday: 'long', hour12: false };
   var prnDt = new Date(Date.now()).toLocaleTimeString('en-us', options);
@@ -8,8 +6,8 @@ function _checkSchedule() {
   var minutes = prnDt.split(' ')[1].split(':')[1]
   var seconds = prnDt.split(' ')[1].split(':')[2]
   var fullhour = hour == 24 ? `00:${minutes}:${seconds}` : prnDt.split(' ')[1]
-  console.log("_checkSchedule", day, schedules);
-  let a = schedules[day]
+  console.log("_checkSchedule", day, global.schedules);
+  let a = global.schedules[day]
 
   if (typeof a != "undefined") {
       if (a.hIn != '0') { //aberto do dia

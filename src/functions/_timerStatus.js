@@ -1,20 +1,16 @@
 const _getStatus = require('./_getStatus');
 
-var __timerStatus = '';
-let sendStatus = [];
-var sendStatusTimer = false;
-
 function _timerStatus() {
-    sendStatusTimer = true
-    __timerStatus = setInterval(() => {
-        console.log(sendStatus)
-        var idx = sendStatus.findIndex((e) => e.dateOut <= Date.now())
+    global.sendStatusTimer = true
+    global.__timerStatus = setInterval(() => {
+        console.log(global.sendStatus)
+        var idx = global.sendStatus.findIndex((e) => e.dateOut <= Date.now())
         if (idx != -1) {
-            _getStatus(sendStatus[idx].id)
-            sendStatus.splice(idx, 1);
-            if (sendStatus.length == 0) {
-                clearInterval(__timerStatus)
-                sendStatusTimer = false
+            _getStatus(global.sendStatus[idx].id)
+            global.sendStatus.splice(idx, 1);
+            if (global.sendStatus.length == 0) {
+                clearInterval(global.__timerStatus)
+                global.sendStatusTimer = false
             }
         }
     }, 5000);

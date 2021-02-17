@@ -3,9 +3,6 @@ const path = require('path');
 
 const { v4: uuidv4 } = require('uuid');
 
-let client = [];
-
-
 async function _sendFile(idChat, url) {
   return new Promise((resolve) => {
       var name = uuidv4()
@@ -19,7 +16,7 @@ async function _sendFile(idChat, url) {
       };
       download(url, path.basename(url, path.extname(url)), async function () {
           const media = MessageMedia.fromFilePath('./media/' + name_);
-          await client.sendMessage(idChat, media).then(() => {
+          await global.client.sendMessage(idChat, media).then(() => {
               var ext = path.extname(name_)
               console.log("_sendFile download: ", './media/' + name_);
               if (fs.existsSync('./media/' + name_)) {

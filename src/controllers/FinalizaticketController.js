@@ -2,38 +2,32 @@ const _checkApiKey =  require('../functions/_checkApiKey');
 const _sendImg =  require('../functions/_sendImg');
 const _saveMessages =  require('../functions/_saveMessages');
 
-let initiated = [];
-let cooldowns = [];
-let config = '';
-var authenticated = false;
-var cooldownsRun = false;
-
 module.exports = {
   async create (req, res) {
     try {
         var content = req.body;
         var key = req.headers.authorization
         if (_checkApiKey(key)) {
-            if (authenticated) {
-                initiated.filter((a) => a.numero == content.idInt).forEach((b) => {
-                    initiated.splice(initiated.indexOf(b), 1)
+            if (global.authenticated) {
+                global.initiated.filter((a) => a.numero == content.idInt).forEach((b) => {
+                    global.initiated.splice(global.initiated.indexOf(b), 1)
                 })
-                if (config.urlImgFim.length > 0 && config.urlImgFim != '') {
-                    if (config.chatbot) {
-                        await _sendImg(content.idInt, config.msgFinal, config.urlMedia + config.urlImgFim)
+                if (global.config.urlImgFim.length > 0 && global.config.urlImgFim != '') {
+                    if (global.config.chatbot) {
+                        await _sendImg(content.idInt, global.config.msgFinal, global.config.urlMedia + global.config.urlImgFim)
                     }
                 } else {
-                    if (config.chatbot) {
-                        await client.sendMessage(content.idInt, config.msgFinal)
+                    if (global.config.chatbot) {
+                        await client.sendMessage(content.idInt, global.config.msgFinal)
                     }
                 }
-                var dTime = cooldowns.findIndex(e => e.idInt == content.idInt);
+                var dTime = global.cooldowns.findIndex(e => e.idInt == content.idInt);
                 if (dTime != -1) {
-                    cooldowns.splice(cooldowns, 1);
-                    if (cooldowns.length == 0) {
+                    global.cooldowns.splice(global.cooldowns, 1);
+                    if (global.cooldowns.length == 0) {
                         console.log('intervalo pausado')
                         clearInterval(_timerOcioso)
-                        cooldownsRun = false
+                        global.cooldownsRun = false
                     }
                 }
                 res.status(201).json({ status: true });

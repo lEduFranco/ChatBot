@@ -1,18 +1,16 @@
 const delay = require('./delay');
 const sendBot = require('./sendBot');
 
-let ms
-
 async function _sendUnreads() {
   try {
       return new Promise(async (resolve, reject) => {
           let _unChats = await client.getChats()
           for await (let e of _unChats) {
               if (e.unreadCount > 0) {
-                  console.log(ms);
-                  if (typeof ms != "undefined") {
-                      var atr = Math.floor(Math.random() * ms.length)
-                      await delay(ms[atr])
+                  console.log(global.ms);
+                  if (typeof global.ms != "undefined") {
+                      var atr = Math.floor(Math.random() *global. ms.length)
+                      await delay(global.ms[atr])
                       let b = await e.fetchMessages({ limit: 1 })
                       await sendBot(b[0])
                   }

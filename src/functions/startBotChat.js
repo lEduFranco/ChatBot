@@ -24,38 +24,27 @@ const io = require('socket.io')(http, {
   }
 });
 
+// var Client = global.client;
 
 async function startBotChat() {
   if (global.config.session != null && global.config.session != '') {
-    global.sessionData = JSON.parse(global.config.session)
-    global.client = new Client({
-          // restartOnAuthFail: true,
-          session: global.sessionData,
-          headless: true,
-          args: ['--no-sandbox',
-              '--disable-setuid-sandbox',
-              '--disable-dev-shm-usage',
-              '--disable-accelerated-2d-canvas',
-              '--no-first-run',
-              '--no-zygote',
-              '--single-process', // <- this one doesn't works in Windows
-              '--disable-gpu'
-          ]
-      })
+      global.sessionData = JSON.parse(global.config.session)
+      global.client = new Client({
+        // restartOnAuthFail: true,
+        session: global.sessionData,
+        headless: true,
+        args: ['--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--no-first-run',
+            '--no-zygote',
+            '--single-process', // <- this one doesn't works in Windows
+            '--disable-gpu'
+        ]
+      });
   } else {
-    global.client = new Client({
-          // restartOnAuthFail: true,
-          headless: true,
-          args: ['--no-sandbox',
-              '--disable-setuid-sandbox',
-              '--disable-dev-shm-usage',
-              '--disable-accelerated-2d-canvas',
-              '--no-first-run',
-              '--no-zygote',
-              '--single-process', // <- this one doesn't works in Windows
-              '--disable-gpu'
-          ]
-      })
+      global.client = global.Client
   }
   _sendLog('O Bot está acordando 🥱...')
   _sendLog('...olá, eu sou o ' + global.config.nomeBot + ' 🤖 e já estou me configurando para começar...')

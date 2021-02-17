@@ -1,12 +1,11 @@
 const fs = require('fs');
-var urlSite = '';
 
 async function uploadMedia(file, type, ext) {
   try {
       return new Promise(async (resolve) => {
           var options = {
               'method': 'POST',
-              'url': urlSite + '/api',
+              'url': global.urlSite + '/api',
               'headers': {
 
               },

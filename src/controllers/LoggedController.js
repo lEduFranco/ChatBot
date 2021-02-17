@@ -1,5 +1,4 @@
 const _checkApiKey = require ('../functions/_checkApiKey');
-const _loadChats = require ('../functions/_loadChats');
 
 const portBot = process.env.PORTBOT;
 

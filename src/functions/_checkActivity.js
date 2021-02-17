@@ -1,17 +1,13 @@
-let config = '';
-
-let actives = [];
-
 function _checkActivity(idInt) {
   const horarioAtual = new Date(Date.now());
-  horarioAtual.setSeconds(horarioAtual.getSeconds() + (config.tempoLimite * 60));
-  var lact = actives.findIndex((e) => e.idInt == idInt)
+  horarioAtual.setSeconds(horarioAtual.getSeconds() + (global.config.tempoLimite * 60));
+  var lact = global.actives.findIndex((e) => e.idInt == idInt)
   if (lact == -1) {
-      actives.push({ 'idInt': idInt, 'time': horarioAtual });
+    global.actives.push({ 'idInt': idInt, 'time': horarioAtual });
   } else {
-      actives[lact].time = horarioAtual
+    global.actives[lact].time = horarioAtual
   }
-  if (actives.length == 0) {
+  if (global.actives.length == 0) {
       // _timerActives()
   }
 }

@@ -1,8 +1,6 @@
 const _checkApiKey = require ('../functions/_checkApiKey');
 const __getUserData = require ('../functions/__getUserData');
 
-
-
 module.exports = {
   async create (req, res) {
     try {

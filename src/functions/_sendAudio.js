@@ -11,16 +11,12 @@ const io = require('socket.io')(http, {
   }
 });
 
-let client = [];
-let attendants = [];
-
-
 async function _sendAudio(data) {
 
   return new Promise(async (resolve) => {
       var name = uuidv4()
       var name_ = ''
-      let chat_ = await client.getChatById(data.idChat)
+      let chat_ = await global.client.getChatById(data.idChat)
       chat_.sendStateRecording()
       var download = async function (uri, filename, callback) {
           request.head(uri, async function (err, res, body) {
@@ -36,8 +32,8 @@ async function _sendAudio(data) {
               })
                   .on('end', async function (stdout, stderr) {
                       const media = MessageMedia.fromFilePath(filename);
-                      await client.sendMessage(data.idChat, media, { sendAudioAsVoice: true }).then(async (res) => {
-                          attendants.filter((e) => e.idAtendente == data.idAtend).map((e) => {
+                      await global.client.sendMessage(data.idChat, media, { sendAudioAsVoice: true }).then(async (res) => {
+                        global.attendants.filter((e) => e.idAtendente == data.idAtend).map((e) => {
                               io.of('/' + portBot).to(e.idSocket).emit('msgSended', { status: true, hasQuotedMsg: true, id: res.id.id, idBubble: data.id, serialized: res.id._serialized })
                           })
 

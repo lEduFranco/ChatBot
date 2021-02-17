@@ -3,12 +3,6 @@ const _timerLists = require('./_timerLists');
 
 const portBot = process.env.PORTBOT
 
-var idBot = 0;
-var sendListTimer = false;
-
-let config = '';
-let sendList = []
-
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http, {
@@ -22,20 +16,20 @@ async function _bulkInterval(idList, sch) {
       try {
           stopTransmission = true
           const conn = await _openCon()
-          conn.promise().query('UPDATE tbLists SET status=2 WHERE idBot=' + idBot + ' AND id=' + idList + '').then(() => {
-              var dList = sendList.findIndex(e => e.id == idList);
+          conn.promise().query('UPDATE tbLists SET status=2 WHERE idBot=' + global.idBot + ' AND id=' + idList + '').then(() => {
+              var dList = global.sendList.findIndex(e => e.id == idList);
               if (dList != -1) {
-                  sendList.splice(dList, 1);
+                global.sendList.splice(dList, 1);
               }
               if (sch) {
-                  sendList.push({ id: idList, dateOut: new Date(Date.now()).setMilliseconds(config.options.bulkDelay) })
+                global.sendList.push({ id: idList, dateOut: new Date(Date.now()).setMilliseconds(global.config.options.bulkDelay) })
               } else {
                   var date = new Date(Date.now());
                   date.setDate(date.getDate() + 1);
-                  date.setHours(config.options.schedule[0], 0, 0, 0)
-                  sendList.push({ id: idList, dateOut: date.getTime() })
+                  date.setHours(global.config.options.schedule[0], 0, 0, 0)
+                  global.sendList.push({ id: idList, dateOut: date.getTime() })
               }
-              if (!sendListTimer) {
+              if (!global.sendListTimer) {
                   _timerLists()
               }
               io.of('/' + portBot).emit('sendMessages', { status: 3, time: Date.now() })

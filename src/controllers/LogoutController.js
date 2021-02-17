@@ -3,18 +3,13 @@ const _sendStatus = require ('../functions/_sendStatus');
 const _saveStatistics = require ('../functions/_saveStatistics');
 const _pmRestart = require ('../functions/_pmRestart');
 
-
-var started = false
-var authenticated = false;
-
-
 module.exports = {
   async create (req, res) {
     try {
         var content = req.body;
         var key = req.headers.authorization
         if (_checkApiKey(key)) {
-            if (started && authenticated) {
+            if (global.started && global.authenticated) {
                 res.end('ok')
                 _sendStatus('desconectado');
                 await changeState(false).then(async (e) => {

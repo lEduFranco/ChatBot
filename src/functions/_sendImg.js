@@ -3,8 +3,6 @@ const path = require('path');
 
 const { v4: uuidv4 } = require('uuid');
 
-let client = [];
-
 async function _sendImg(idChat, Texto, url) {
   var name = uuidv4()
   var name_ = ''
@@ -17,7 +15,7 @@ async function _sendImg(idChat, Texto, url) {
   };
   download(url, name, async function () {
       const media = MessageMedia.fromFilePath('./media/' + name_);
-      await client.sendMessage(idChat, media, { caption: Texto });
+      await global.client.sendMessage(idChat, media, { caption: Texto });
       console.log("_sendImg download: ", './media/' + name_);
       if (fs.existsSync('./media/' + name_)) {
           fs.unlinkSync('./media/' + name_);

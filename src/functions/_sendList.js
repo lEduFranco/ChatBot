@@ -5,15 +5,10 @@ const _sendMsg = require('./_sendMsg');
 const _bulkInterval = require('./_bulkInterval');
 const delay = require('./delay');
 
-let config = '';
-var idBot = 0;
-var sendListRun = false;
-var stopTransmission = false;
-
 async function _sendList(data) {
   try {
 
-      sendListRun = true
+    global.sendListRun = true
       console.log(new Date(Date.now()).toLocaleTimeString(), ' - inicio de disparo da lista ID: ' + data.idList)
       var idList = data.idList
       let recipients = JSON.parse(data.data)
@@ -27,8 +22,8 @@ async function _sendList(data) {
       }
 
       var body = data.body
-      if (config.leaveList && config.msgLeaveList != '') {
-          body += `\n\n${config.msgLeaveList}`
+      if (global.config.leaveList && global.config.msgLeaveList != '') {
+          body += `\n\n${global.config.msgLeaveList}`
       }
 
       let url_d = await _getImagesList(JSON.parse(data.images))
@@ -88,8 +83,8 @@ async function _sendList(data) {
       const conn = await _openCon()
 
       for await (let a of recipients) {
-          if (!stopTransmission) {
-              conn.promise().query('UPDATE tbRecipients SET lastSend="' + a.phone + '", lastIndex="' + count + '", lastTime=NOW() WHERE idBot=' + idBot + ' AND id=' + idList + '').catch(console.log).then();
+          if (!global.stopTransmission) {
+              conn.promise().query('UPDATE tbRecipients SET lastSend="' + a.phone + '", lastIndex="' + count + '", lastTime=NOW() WHERE idBot=' + global.idBot + ' AND id=' + idList + '').catch(console.log).then();
               count_bulk++
               count++
 
@@ -108,23 +103,23 @@ async function _sendList(data) {
                   await _sendMsg(a.phone + '@c.us', a.name, body, null, null)
               }
 
-              console.log("####", count_bulk, "==", config.options.bulkLength, "||", checksch);
-              if (count_bulk == config.options.bulkLength || !checksch) {
+              console.log("####", count_bulk, "==", global.config.options.bulkLength, "||", checksch);
+              if (count_bulk == global.config.options.bulkLength || !checksch) {
                   console.log("PARA DE ENVIAR!");
                   await _bulkInterval(idList, checksch)
                   count_bulk = 0
               }
 
-              console.log("stopTransmission", stopTransmission);
+              console.log("stopTransmission", global.stopTransmission);
 
               //const conn = await _openCon()
-              conn.promise().query('UPDATE tbLists SET status=1 WHERE idBot=' + idBot + ' AND id=' + idList + '').catch(console.log).then();
+              conn.promise().query('UPDATE tbLists SET status=1 WHERE idBot=' + global.idBot + ' AND id=' + idList + '').catch(console.log).then();
               //conn.end();
               await delay(b);
           }
       }
 
-      sendListRun = false
+      global.sendListRun = false
   } catch (error) {
       console.log(error)
   }

@@ -4,15 +4,11 @@ const _checkLead = require('./_checkLead');
 const _saveLead = require('./_saveLead');
 const _saveTicket = require('./_saveTicket');
 
-let config = '';
-let client = [];
-let initiated = [];
-
 async function setHumanChat(data, cSchedule, idLead) {
-  if (!config.chatbot && parseInt(config.receptSector) != 0) {
+  if (!global.config.chatbot && parseInt(global.config.receptSector) != 0) {
       if (cSchedule == 'on') {
-          let contato = await client.getContactById(data.from)
-          var img = await client.getProfilePicUrl(data.from)
+          let contato = await global.client.getContactById(data.from)
+          var img = await global.client.getProfilePicUrl(data.from)
           if (contato.isBusiness) {
               nome = _checkNull(contato.verifiedName) ? contato.verifiedName : ''
           } else {
@@ -32,15 +28,15 @@ async function setHumanChat(data, cSchedule, idLead) {
           } else {
               await _saveLead(obj, true)
           }
-          initiated.push({ 'nomeCliente': nome, 'numero': data.from, 'etapa': 2, 'tipo': 'atendhumano' })
+          global.initiated.push({ 'nomeCliente': nome, 'numero': data.from, 'etapa': 2, 'tipo': 'atendhumano' })
           // var resposta = 'Digite *#* para finalizar o atendimento a qualquer momento!'
           // await client.sendMessage(data.from, resposta)
-          var idx = initiated.findIndex((e) => e.numero == data.from) //busca iniciados
+          var idx = global.initiated.findIndex((e) => e.numero == data.from) //busca iniciados
           let objt = {
               'id': idx,
               'nomeCliente': nome,
               'telefoneCliente': phone,
-              'idSetor': config.receptSector,
+              'idSetor': global.config.receptSector,
               'idSubSetor': 0,
               'imgCliente': img,
               'idInt': idInt
@@ -48,10 +44,10 @@ async function setHumanChat(data, cSchedule, idLead) {
           await _saveTicket(objt)
           return true
       } else if (cSchedule == 'break') {
-          await client.sendMessage(data.from, config.msgAusente)
+          await global.client.sendMessage(data.from, global.config.msgAusente)
           return true
       } else {
-          await client.sendMessage(data.from, config.msgAusente)
+          await global.client.sendMessage(data.from, global.config.msgAusente)
           return true
       }
   }

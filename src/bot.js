@@ -10,13 +10,30 @@ global.dconn = '';
 const portBot = process.env.PORTBOT
 
 global.whitelist = ['*'];
+
+global.urlAudio = global.urlSite + '/media/sended/';
+
 global.apiKey = '';
+global.leads = '';
+global.sessionData = '';
+global.config = '';
+global.__timerLists = '';
+global.__timerOcioso = '';
+global.__timerStatus = '';
+global.info = '';
+global.urlSite = '';
 
 global.idBot = 0;
+global.countQr = 0;
 
-global.config = '';
 global.authenticated = false;
 global.started = false
+global.qrMsg = false;
+global.sendListTimer = false;
+global.sendStatusTimer = false;
+global.sendListRun = false;
+global.stopTransmission = false;
+global.cooldownsRun = false;
 
 global.sectors = []
 global.sectors_ = []
@@ -24,18 +41,20 @@ global.subsectors = []
 global.subsectors_ = []
 global.schedules = []
 global.answers = []
-
-global.ms
-
-global.sessionData = '';
 global.client = [];
 global.initiated = [];
 global.attendants = [];
-global.countQr = 0;
+global.sendList = [];
+global.sendStatus = [];
+global.actives = [];
+global.countSendMsg = [];
+global.cooldowns = [];
+global.capturing = [];
 
-global.qrMsg = false;
+global.spammers = {};
+global.countClick = { 'sectors': [], 'subsectors': [] }
 
-
+global.ms
 
 if (fs.existsSync(BD_CONNECT_BOT)) {
   fs.readFile(BD_CONNECT_BOT, async (err, data) => {
@@ -70,25 +89,6 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json({ limit: '100mb' }));
 //let names = require('./names.json');
 
-var authenticated = false;
-
-var qrImg = ''
-
-
-let attendants = []
-
-
-
-let client = [];
-
-let countSendMsg = []
-
-var qrcode = ''
-
-
-
-
-
 // var _timerActives = setInterval(() => {
 //     actives.map(async(e, i) => {
 //         if (e.time < new Date(Date.now())) {
@@ -113,16 +113,16 @@ var qrcode = ''
 io.of('/' + portBot).on('connection', async socket => {
     socket.on('cadAtendente', async data => {
         data = JSON.parse(data)
-        attendants.push({
+        global.attendants.push({
             'idAtendente': data.idAtendente,
             'idSocket': data.idSocket,
             'setores': data.setores
         })
-        io.of('/' + portBot).emit('attendants', attendants)
+        io.of('/' + portBot).emit('attendants', global.attendants)
     });
 
     socket.on('envia', data => {
-        client.sendMessage(data[0], data[1]);
+      global.client.sendMessage(data[0], data[1]);
     });
 
     socket.on('_sendImg', data => {
@@ -130,21 +130,21 @@ io.of('/' + portBot).on('connection', async socket => {
     });
 
     socket.on('disconnect', async () => {
-        var dAtendente = attendants.findIndex(e => e.idSocket == socket.id);
+        var dAtendente = global.attendants.findIndex(e => e.idSocket == socket.id);
         if (dAtendente != -1) {
-            attendants.splice(dAtendente, 1);
+            global.attendants.splice(dAtendente, 1);
         }
-        io.of('/' + portBot).emit('attendants', attendants)
+        io.of('/' + portBot).emit('attendants', global.attendants)
     });
 
     socket.on('loadQr', data => {
         if (data == '1') {
-            socket.emit('qr', qrImg)
+            socket.emit('qr', global.qrImg)
         }
     })
 
     socket.on('_loadChats', async data => {
-        if (authenticated) {
+        if (global.authenticated) {
             if (data != null) {
                 let chats = await _loadChats(data)
                 socket.emit('chats', chats);
@@ -153,7 +153,7 @@ io.of('/' + portBot).on('connection', async socket => {
     });
 
     socket.on('_loadChat', async data => {
-        if (authenticated) {
+        if (global.authenticated) {
             if (data != null) {
                 let chat = await _loadChat(data)
                 socket.emit('chat', chat);
@@ -163,7 +163,7 @@ io.of('/' + portBot).on('connection', async socket => {
 
     socket.on('getStatusBot', data => {
         if (data == '1') {
-            var status = authenticated ? 'conectado' : 'desconectado'
+            var status = global.authenticated ? 'conectado' : 'desconectado'
             socket.emit('status', status)
             // _sendStatus(status)
         }
@@ -177,11 +177,11 @@ io.of('/' + portBot).on('connection', async socket => {
             var idReply = data.idReply
             if (msg != null && id != null) {
                 if (idReply != null) {
-                    await client.sendMessage(id, msg, { quotedMessageId: idReply }).then((e) => {
+                    await global.client.sendMessage(id, msg, { quotedMessageId: idReply }).then((e) => {
                         socket.emit('msgSended', { status: true, hasQuotedMsg: true, id: e.id.id, idBubble: idMsg, serialized: e.id._serialized });
                     })
                 } else {
-                    await client.sendMessage(id, msg).then((e) => {
+                    await global.client.sendMessage(id, msg).then((e) => {
                         socket.emit('msgSended', { status: true, hasQuotedMsg: false, id: e.id.id, idBubble: idMsg, serialized: e.id._serialized });
                     })
                 }
@@ -204,13 +204,13 @@ io.of('/' + portBot).on('connection', async socket => {
 
     socket.on('countSends', data => {
         if (data) {
-            socket.emit('countSendMsg', countSendMsg)
+            socket.emit('countSendMsg', global.countSendMsg)
         }
     })
 
     socket.on('sendSeen', async data => {
         try {
-            let chat = await client.getChatById(data.idInt)
+            let chat = await global.client.getChatById(data.idInt)
             await chat.sendSeen()
         } catch (error) { }
     })
@@ -241,13 +241,13 @@ io.of('/' + portBot).on('connection', async socket => {
 
     socket.on('getQR', async (data) => {
         if (data == '1') {
-            socket.emit('qr', qrcode)
+            socket.emit('qr', global.qrcode)
         }
     })
 
     socket.on('setUnread', async data => {
         if (data.id != null) {
-            await client.markChatUnread(data.id)
+            await global.client.markChatUnread(data.id)
         }
     })
 });

@@ -3,11 +3,6 @@ const _getLeads = require('./_getLeads');
 const __checkAllowMessage = require('./__checkAllowMessage');
 const _timerLists = require('./_timerLists');
 
-var authenticated = false;
-var sendListTimer = false;
-var idBot = 0;
-let sendList = [];
-
 async function __newList(data) {
   try {
       return new Promise(async function (resolve, reject) {
@@ -29,12 +24,12 @@ async function __newList(data) {
                   }
                   var size = recipients.length
                   if (size > 0) {
-                      await conn.promise().query('INSERT INTO tbLists SET idBot=' + idBot + ', name="' + data.name + '", dateIn=NOW(), dateOut="' + data.dateout + '"; INSERT INTO tbRecipients SET idBot=' + idBot + ', idList=LAST_INSERT_ID(), data=' + conn.escape(JSON.stringify(recipients)) + ', size=' + size + '').then(async ([result]) => {
+                      await conn.promise().query('INSERT INTO tbLists SET idBot=' + global.idBot + ', name="' + data.name + '", dateIn=NOW(), dateOut="' + data.dateout + '"; INSERT INTO tbRecipients SET idBot=' + global.idBot + ', idList=LAST_INSERT_ID(), data=' + conn.escape(JSON.stringify(recipients)) + ', size=' + size + '').then(async ([result]) => {
                           var idList = result[0].insertId
-                          await conn.promise().query('INSERT INTO tbTemplates SET idBot=' + idBot + ', idList=' + idList + ', body=' + conn.escape(template.body.trim()) + ',images=' + conn.escape(JSON.stringify(template.urlImages)) + ' , date=NOW(), status=0').then(() => {
-                              if (authenticated) {
-                                  sendList.push({ id: idList, dateOut: new Date(data.dateout).getTime() })
-                                  if (!sendListTimer) {
+                          await conn.promise().query('INSERT INTO tbTemplates SET idBot=' + global.idBot + ', idList=' + idList + ', body=' + conn.escape(template.body.trim()) + ',images=' + conn.escape(JSON.stringify(template.urlImages)) + ' , date=NOW(), status=0').then(() => {
+                              if (global.authenticated) {
+                                global.sendList.push({ id: idList, dateOut: new Date(data.dateout).getTime() })
+                                  if (!global.sendListTimer) {
                                       _timerLists()
                                   }
                               }

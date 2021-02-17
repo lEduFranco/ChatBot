@@ -3,8 +3,6 @@ const path = require('path');
 
 const { v4: uuidv4 } = require('uuid');
 
-let client = [];
-
 async function _sendImgs(idChat, Texto, urls) {
   try {
       urls = urls.split(',');
@@ -22,7 +20,7 @@ async function _sendImgs(idChat, Texto, urls) {
           await download(urld, name, async function () {
               console.log("_sendImgs download: ", './media/' + name + path.extname(urld));
               const media = MessageMedia.fromFilePath('./media/' + name + path.extname(urld));
-              await client.sendMessage(idChat, media, {
+              await global.client.sendMessage(idChat, media, {
                   caption: idx == 0 ? Texto : ''
               }).then()
               if (fs.existsSync('./media/' + name + path.extname(urld))) {

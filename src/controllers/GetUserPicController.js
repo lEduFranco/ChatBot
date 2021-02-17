@@ -1,15 +1,13 @@
 const _checkApiKey = require ('../functions/_checkApiKey');
 const __refreshPicUser = require ('../functions/__refreshPicUser');
 
-let client = [];
-
 module.exports = {
   async create (req, res) {
     try {
         var content = req.body;
         var key = req.headers.authorization
         if (_checkApiKey(key)) {
-            let a = await client.getProfilePicUrl(content.id)
+            let a = await global.client.getProfilePicUrl(content.id)
             let b = await __refreshPicUser({ idInt: content.id, url: a })
             res.status(201).json({ data: a })
         } else {

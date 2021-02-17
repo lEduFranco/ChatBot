@@ -1,7 +1,6 @@
 const _checkApiKey = require ('../functions/_checkApiKey');
 const __transferChat = require ('../functions/__transferChat');
 
-
 module.exports = {
   async create (req, res) {
     try {

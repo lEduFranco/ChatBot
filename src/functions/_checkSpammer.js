@@ -1,21 +1,17 @@
-const spammers = {};
-
-let client = [];
-
 async function _checkSpammer(id) {
   try {
-      if (spammers[id] > new Date()) {
-          spammers[id]['burst']++
-          if (spammers[id]['burst'] >= 3) {
-              let cont = await client.getContactById(id)
+      if (global.spammers[id] > new Date()) {
+        global.spammers[id]['burst']++
+          if (global.spammers[id]['burst'] >= 3) {
+              let cont = await global.client.getContactById(id)
               await cont.block()
           }
           return false
       } else {
           const timeoutUntil = new Date();
           timeoutUntil.setSeconds(timeoutUntil.getSeconds() + 5);
-          spammers[id] = timeoutUntil;
-          spammers[id]['burst'] = 0
+          global.spammers[id] = timeoutUntil;
+          global.spammers[id]['burst'] = 0
           return true
       }
   } catch (error) {

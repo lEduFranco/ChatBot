@@ -2,7 +2,6 @@ const _checkApiKey = require('../functions/_checkApiKey');
 const _initBot = require('../functions/_initBot');
 const changeState = require('../functions/changeState');
 
-
 module.exports = {
   async create (req, res) {
   try {
@@ -10,7 +9,7 @@ module.exports = {
       var key = req.headers.authorization;
       console.log("INICIALIZADOR: ", key, _checkApiKey(key));
       if (_checkApiKey(key)) {
-          if (!started) {
+          if (!global.started) {
               _initBot()
               changeState(true)
               res.end('ok');

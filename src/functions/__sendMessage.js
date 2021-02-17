@@ -1,17 +1,13 @@
 const checkPhone = require('./checkPhone');
 const __scheduleMessage = require('./__scheduleMessage');
 
-var authenticated = false;
-
-let client = [];
-
 async function __sendMessage(data) {
   return new Promise(async (resolve) => {
       try {
           if ("message" in data && "phone" in data) {
               let phone = checkPhone(data.phone)
-              if (authenticated) {
-                  await client.sendMessage(phone, data.message).then(() => {
+              if (global.authenticated) {
+                  await global.client.sendMessage(phone, data.message).then(() => {
                       resolve({ status: 1, description: 'sended' })
                   }).catch(() => {
                       resolve({ status: 0, description: 'error' })

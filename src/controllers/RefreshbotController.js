@@ -1,13 +1,10 @@
 const _initBot = require ('../functions/_initBot');
 const checkToken = require ('../functions/checkToken');
 
-var authenticated = false;
-var authenticated = false;
-
 module.exports = {
   async create (req, res) {
     try {
-        if (started && authenticated) {
+        if (global.started && global.authenticated) {
             var content = req.body;
             var authToken = content.token;
             if (checkToken(authToken)) {

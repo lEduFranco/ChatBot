@@ -1,7 +1,5 @@
 const _openCon = require('./_openCon');
 
-var idBot = 0;
-
 async function _saveMessages(idChat, idTicket) {
   try {
       const conn = await _openCon();
@@ -15,7 +13,7 @@ async function _saveMessages(idChat, idTicket) {
       })
       await Promise.all(promises)
       obj = JSON.stringify(obj)
-      await conn.promise().query('INSERT INTO tbTicketsMsg (idTicket, messages, dataCad, idBot) VALUES (' + idTicket + ', ' + conn.escape(obj) + ', NOW(), ' + idBot + ')').catch(console.log)
+      await conn.promise().query('INSERT INTO tbTicketsMsg (idTicket, messages, dataCad, idBot) VALUES (' + idTicket + ', ' + conn.escape(obj) + ', NOW(), ' + global.idBot + ')').catch(console.log)
   } catch (error) {
       console.log(error)
   }

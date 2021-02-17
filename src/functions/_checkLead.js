@@ -1,13 +1,11 @@
 const _openCon = require('./_openCon');
 
-var idBot = 0;
-
 async function _checkLead(idInt) {
   try {
       return new Promise(async (resolve) => {
           const conn = await _openCon();
           var tel = idInt.substr(-8)
-          conn.promise().query("SELECT * FROM tbLeads WHERE idInt LIKE '%" + idInt + "%' AND idBot=" + idBot + "").then(([rows, fields]) => {
+          conn.promise().query("SELECT * FROM tbLeads WHERE idInt LIKE '%" + idInt + "%' AND idBot=" + global.idBot + "").then(([rows, fields]) => {
               if (rows.length > 0) {
                   resolve(true)
               } else {

@@ -1,12 +1,10 @@
 const checkToken = require ('../functions/checkToken');
-   const _loadChats = require ('../functions/_loadChats');
-
-var authenticated = false;
+const _loadChats = require ('../functions/_loadChats');
 
 
 module.exports = {
   async create (req, res) {
-    if (authenticated) {
+    if (global.authenticated) {
         var content = req.body;
         var authToken = content.token;
         if (checkToken(authToken)) {

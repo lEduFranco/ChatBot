@@ -1,12 +1,8 @@
 const _sendImg = require('./_sendImg');
 
-let config = '';
-let sectors = []
-let client = [];
-
 async function _msgSector(name, gender, idInt) {
-  var msgInicio = config.msgInicio
-  msgInicio = msgInicio.replace('%BOTNOME%', config.nomeBot)
+  var msgInicio = global.config.msgInicio
+  msgInicio = msgInicio.replace('%BOTNOME%', global.config.nomeBot)
   if (name != undefined && name != 'undefined') {
       msgInicio = msgInicio.replace('%CLIENTE%', name)
       msgInicio = msgInicio.replace('%AO%', gender == 'male' ? 'o' : 'a')
@@ -15,13 +11,13 @@ async function _msgSector(name, gender, idInt) {
       msgInicio = msgInicio.replace('%AO%', 'o')
   }
   msgInicio += '\n\n'
-  msgInicio += sectors.join('\n')
+  msgInicio += global.sectors.join('\n')
   msgInicio += '\n\n'
-  msgInicio += config.infoRodape
-  if (config.urlImgInicio.length > 0) {
-      await _sendImg(idInt, msgInicio, config.urlMedia + config.urlImgInicio)
+  msgInicio += global.config.infoRodape
+  if (global.config.urlImgInicio.length > 0) {
+      await _sendImg(idInt, msgInicio, global.config.urlMedia + global.config.urlImgInicio)
   } else {
-      await client.sendMessage(idInt, msgInicio)
+      await cglobal.lient.sendMessage(idInt, msgInicio)
   }
 }
 module.exports =  _msgSector;
